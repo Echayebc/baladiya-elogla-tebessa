@@ -3,60 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - الفهرس الشامل</title>
+<title>بلدية العقلة - ولاية تبسة</title>
 <style>
-body{font-family:Tahoma,Arial;background:#f4f6f9;margin:0;padding:10px}
-h1{text-align:center;color:#0e6ba8;background:#fff;padding:15px;border-radius:10px;border:2px solid #0e6ba8}
-.search{width:100%;padding:12px;border-radius:8px;border:2px solid #0e6ba8;font-size:16px;margin:10px 0;box-sizing:border-box}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
-.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:12px;text-decoration:none;color:#333;display:block;transition:0.2s}
-.card:hover{background:#0e6ba8;color:#fff;transform:scale(1.02)}
-.card b{color:#b80000}.card:hover b{color:#ffeb3b}
-.count{text-align:center;margin:10px;color:#666}
+body{background:#eef6ff;font-family:Tahoma,Arial;margin:0;padding:10px}
+.header{border:4px solid #c00000;border-radius:20px;background:#fff;padding:15px;text-align:center;margin-bottom:12px}
+.header h2{color:#0e6ba8;margin:5px;line-height:1.8;font-size:22px}
+.fahras{border:3px solid #0e6ba8;border-radius:15px;background:#fff;padding:12px;text-align:center;margin-bottom:15px}
+.fahras a{color:#c00000;font-weight:bold;text-decoration:none;font-size:19px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{border:3px solid #0e6ba8;border-radius:15px;background:#fff;padding:14px;text-align:center;color:#0e6ba8;font-weight:bold;text-decoration:none;font-size:16px;line-height:1.4;min-height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.card:hover{background:#0e6ba8;color:#fff}
 </style>
 </head>
 <body>
-<h1>🏛️ بلدية العقلة - ولاية تبسة<br>الفهرس الرسمي 001 - 115</h1>
-<input type="text" id="search" class="search" placeholder="ابحث هنا... مثلا: الري، الضرائب، الحالة المدنية">
-<div class="count" id="count"></div>
-<div class="grid" id="grid"></div>
+<div class="header">
+<h2>الهيكل التنظيمي الهرمي<br>بلدية العقلة - ولاية تبسة</h2>
+<p>19 مقعد حسب المرسوم 26-282 لسنة 2026 -<br>القانون 10-11 المعدل بالأمر 13-21</p>
+</div>
+
+<div class="fahras"><a href="101-biئة.html">📚 الفهرس الشامل - 101 ملف - اضغط للدخول</a></div>
+
+<div class="grid" id="grid">
+<a class="card" data-num="001">001 الهيكل العام</a>
+<a class="card" data-num="002">002 المجلس الشعبي</a>
+<a class="card" data-num="003">003 رئيس المجلس</a>
+<a class="card" data-num="004">004 النواب 3</a>
+<a class="card" data-num="005">005 الأمين العام</a>
+<a class="card" data-num="006">006 اللجان الدائمة</a>
+<a class="card" data-num="007">007 الإدارة والمالية</a>
+<a class="card" data-num="008">008 التنظيم والشؤون العامة</a>
+<a class="card" data-num="009">009 التعمير والتجهيز</a>
+<a class="card" data-num="010">010 النظافة والشبكات</a>
+<a class="card" data-num="011">011 مكتب التنظيم والانتخابات</a>
+<a class="card" data-num="012">012 الحالة المدنية</a>
+<a class="card" data-num="013">013 الخدمة الوطنية</a>
+<a class="card" data-num="014">014 الشؤون الاجتماعية</a>
+<a class="card" data-num="015">015 الصحة والنظافة</a>
+<a class="card" data-num="016">016 الأشغال والمصالح التقنية</a>
+<a class="card" data-num="017">017 أملاك البلدية</a>
+<a class="card" data-num="018">018 الميزانية والمحاسبة</a>
+<a class="card" data-num="019">019 الأجور والمستخدمين</a>
+<a class="card" data-num="020">020 التجهيز والصيانة</a>
+<a class="card" data-num="021">021 البيومتري وجواز السفر</a>
+<a class="card" data-num="022">022 التفويضات والملحق</a>
+<a class="card" data-num="023">023 المرافق التربوية والشباب</a>
+<a class="card" data-num="024">024 السوق الأسبوعي</a>
+<a class="card" data-num="025">025 المذابح</a>
+<a class="card" data-num="026">026 المحاشر</a>
+<a class="card" data-num="027">027 رفيقة بودراع</a>
+<a class="card" data-num="028">028 رفيقة بودراع V3</a>
+<a class="card" data-num="029">029 مندوبية الفلاحة</a>
+<a class="card" data-num="030">030 وسيط الجمهورية</a>
+<a class="card" data-num="031">031 دائرة العقلة</a>
+<a class="card" data-num="032">032 ولاية تبسة</a>
+<a class="card" data-num="033">033 ابتسام بولحية</a>
+<a class="card" data-num="034">034 ابتسام V2</a>
+<a class="card" data-num="035">035 المحكمة الإدارية</a>
+<a class="card" data-num="036">036 مجلس الدولة</a>
+<a class="card" data-num="037">037 المحكمة الدستورية</a>
+<a class="card" data-num="038">038 البرلمان</a>
+<a class="card" data-num="039">039 وزارة الداخلية</a>
+<a class="card" data-num="040">040 وزارة المالية</a>
+<a class="card" data-num="041">041 وزارة التربية</a>
+<a class="card" data-num="042">042 وزارة الصحة</a>
+<a class="card" data-num="043">043 وزارة الفلاحة</a>
+<a class="card" data-num="044">044 وزارة السكن</a>
+<a class="card" data-num="045">045 الأشغال العمومية</a>
+<a class="card" data-num="046">046 وزارة النقل</a>
+<a class="card" data-num="047">047 وزارة الطاقة</a>
+<a class="card" data-num="048">048 وزارة التجارة</a>
+<a class="card" data-num="049">049 وزارة الصناعة</a>
+<a class="card" data-num="050">050 وزارة المجاهدين</a>
+<a class="card" data-num="051">051 الشباب والرياضة</a>
+<a class="card" data-num="052">052 وزارة الثقافة</a>
+<a class="card" data-num="053">053 وزارة الاتصال</a>
+<a class="card" data-num="054">054 وزارة العدل</a>
+<a class="card" data-num="055">055 الخارجية</a>
+<a class="card" data-num="056">056 وزارة البيئة</a>
+<a class="card" data-num="057">057 وزارة التضامن</a>
+<a class="card" data-num="058">058 الصيد البحري</a>
+<a class="card" data-num="059">059 وزارة الري</a>
+<a class="card" data-num="060">060 البريد والمواصلات</a>
+<a class="card" data-num="061">061 ANLITS</a>
+<a class="card" data-num="062">062 ANAR</a>
+<a class="card" data-num="063">063 ANGEM</a>
+<a class="card" data-num="064">064 ANAD</a>
+<a class="card" data-num="065">065 CNAC</a>
+<a class="card" data-num="066">066 CASNOS</a>
+<a class="card" data-num="067">067 CNAS</a>
+<a class="card" data-num="068">068 CNR التقاعد</a>
+<a class="card" data-num="069">069 الجزائرية للمياه ADE</a>
+<a class="card" data-num="070">070 الديوان الوطني ONA للتطهير</a>
+<a class="card" data-num="071">071 سونلغاز</a>
+<a class="card" data-num="072">072 نفطال</a>
+<a class="card" data-num="073">073 اتصالات الجزائر</a>
+<a class="card" data-num="074">074 بريد الجزائر</a>
+<a class="card" data-num="075">075 عدل AADL</a>
+<a class="card" data-num="076">076 ديوان الترقية OPGI</a>
+<a class="card" data-num="077">077 مسح الأراضي</a>
+<a class="card" data-num="078">078 أملاك الدولة</a>
+<a class="card" data-num="079">079 الضرائب</a>
+<a class="card" data-num="080">080 الخزينة</a>
+<a class="card" data-num="081">081 الجمارك</a>
+<a class="card" data-num="082">082 الأمن الوطني</a>
+<a class="card" data-num="083">083 الدرك الوطني</a>
+<a class="card" data-num="084">084 الحماية المدنية</a>
+<a class="card" data-num="085">085 الغابات</a>
+<a class="card" data-num="086">086 مفتشية العمل</a>
+<a class="card" data-num="087">087 مديرية التجارة</a>
+<a class="card" data-num="088">088 مديرية الصناعة</a>
+<a class="card" data-num="089">089 مديرية التشغيل ANEM</a>
+<a class="card" data-num="090">090 النشاط الاجتماعي DAS</a>
+<a class="card" data-num="091">091 الشباب والرياضة DJS</a>
+<a class="card" data-num="092">092 مديرية الثقافة</a>
+<a class="card" data-num="093">093 السياحة والصناعة التقليدية</a>
+<a class="card" data-num="094">094 الصناعة التقليدية</a>
+<a class="card" data-num="095">095 مصلحة السياحة</a>
+<a class="card" data-num="096">096 الأشغال العمومية DTP</a>
+<a class="card" data-num="097">097 الري والموارد المائية</a>
+<a class="card" data-num="098">098 الطاقة والمناجم</a>
+<a class="card" data-num="099">099 مديرية النقل</a>
+<a class="card" data-num="100">100 البريد والمواصلات</a>
+<a class="card" data-num="101">101 البيئة</a>
+</div>
 
 <script>
-const files = [
-"001-hal-madaniya.html","002-tanzim-3am.html","003-intikhabat.html","004-chououn-ijtima3iya.html","005-mizaniya.html","006-momtallakat.html","007-safaqat.html","008-achghal-jadida.html","009-siha-nadhafa.html","010-tarbiya-ta3lim.html",
-"011-thaqafa-chabab.html","012-riyadha.html","013-sakan.html","014-tachghil.html","015-istiثمار.html","016-biئة.html","017-naql.html","018-failaha.html","019-riy.html","020-achghal-omoumiya.html",
-"021-taamir.html","022-amlak-dawla.html","023-daraib.html","024-khazina.html","025-himaya-madaniya.html","026-amn.html","027-ghabat.html","028-tijara.html","029-sina3a.html","030-siyaha.html",
-"031-taqa.html","032-barid.html","033-tachghil-anem.html","034-tadamoun.html","035-mojahidin.html","036-chououn-diniya.html","037-chabab-riyadha.html","038-thaqafa.html","039-ta3lim-mihani.html","040-jami3a.html",
-"041-mahkama.html","042-majlis-qadai.html","043-wilaya.html","044-daira.html","045-baladiya.html","046-qanoun-baladiya.html","047-moudawala.html","048-qarar.html","049-moursala.html","050-mahdhar.html",
-"051-taqrir.html","052-sijil.html","053-archif.html","054-raqmana.html","055-ittisal.html","056-ALAAM.html","057-chafafiya.html","058-mouwatine.html","059-chikaya.html","060-tadbir-tafouidi.html",
-"061-lajna-safaqat.html","062-lajna-mounaqasa.html","063-maktab-safaqat.html","064-code-marché.html","065-POS.html","066-PDAU.html","067-PERMIS.html","068-URBANISME.html","069-CADASTRE.html","070-DOMAN.html",
-"071-CONSERVATION.html","072-AGENCE-FONCIERE.html","073-ADE.html","074-ONA.html","075-SONELGAZ.html","076-OPGI.html","077-AADL.html","078-ANL.html","079-DLEP.html","080-DUC.html",
-"081-DTP.html","082-DRE.html","083-DMI.html","084-DOT.html","085-DCP.html","086-DCW.html","087-DASS.html","088-DJSL.html","089-DC.html","090-ACTION-SOCIALE.html",
-"091-JEUNESSE-SPORT.html","092-CULTURE.html","093-sijil-tijari.html","094-sina3a-taqlidiya.html","095-siyaha.html","096-achghal-omoumiya.html","097-ray-mawarid-maiya.html","098-taqa-manajim.html","099-naql.html","100-barid-mowasalat.html",
-"101-biئة.html","102-taamir-urbanisme.html","103-amlak-dawla.html","104-daraib.html","105-khazina.html","106-himaya-madaniya.html","107-amn-watani.html","108-ghabat.html","109-failaha.html","110-tarbiya.html",
-"111-siha.html","112-tachghil.html","113-taqafiya-islmiya.html","114-mojahidin.html","115-ittisal.html"
-];
-
-const grid = document.getElementById('grid');
-const count = document.getElementById('count');
-function render(list){
-grid.innerHTML='';
-list.forEach(f=>{
-const num = f.split('-')[0];
-const a = document.createElement('a');
-a.href=f;
-a.className='card';
-a.innerHTML=`<b>${num}</b> - ${f.replace('.html','').replace(/-/g,' ')}`;
-grid.appendChild(a);
+let fileList = [];
+// تحميل قائمة الملفات مرة واحدة
+fetch('https://api.github.com/repos/Echayebc/baladiya-elogla-tebessa/contents')
+.then(r=>r.json())
+.then(data=>{
+  fileList = data.filter(f=>f.name.endsWith('.html')).map(f=>f.name);
+  console.log('Files loaded', fileList.length);
 });
-count.textContent=`عدد الملفات: ${list.length} ملف`;
-}
-render(files);
-document.getElementById('search').addEventListener('input',e=>{
-const q=e.target.value.toLowerCase();
-const filt=files.filter(f=>f.toLowerCase().includes(q));
-render(filt);
+
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click', async (e)=>{
+    e.preventDefault();
+    const num = card.getAttribute('data-num');
+    card.textContent = 'جاري الفتح...';
+    // ابحث عن الملف الذي يبدأ بنفس الرقم
+    let target = fileList.find(name => name.startsWith(num + '-') || name.startsWith(num));
+    if(target){
+      window.location.href = target;
+    } else {
+      // fallback جرب الأسماء القديمة
+      window.location.href = num + '-achghal-omoumiya.html';
+      // اذا لم يوجد، جرب مباشرة
+      setTimeout(()=>{ window.location.href = num + '.html'; }, 500);
+    }
+  });
 });
 </script>
+
+<br><center><a href="#" onclick="location.reload()">🔄 تحديث الصفحة</a></center>
 </body>
 </html>
