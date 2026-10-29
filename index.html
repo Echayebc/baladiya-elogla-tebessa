@@ -3,132 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - ولاية تبسة - الفهرس الشامل</title>
+<title>بلدية العقلة - الفهرس الشامل</title>
 <style>
-body{font-family:Tahoma, Arial; padding:15px; line-height:2; background:#f0f8ff; margin:0}
-h1{color:#0e6ba8; text-align:center; font-size:22px}
-h2{color:#b80000; text-align:center; font-size:16px; background:#fff; padding:10px; border-radius:10px; border:2px solid #0e6ba8}
-.grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-.card{background:#fff; border:2px solid #0e6ba8; border-radius:10px; padding:10px; text-align:center}
-.card a{color:#0e6ba8; text-decoration:none; font-weight:bold; font-size:14px}
-.card:hover{background:#e8f0ff}
-.header{background:#fff; border:3px solid #b80000; border-radius:12px; padding:15px; margin-bottom:15px; text-align:center}
+body{font-family:Tahoma,Arial;background:#f4f6f9;margin:0;padding:10px}
+h1{text-align:center;color:#0e6ba8;background:#fff;padding:15px;border-radius:10px;border:2px solid #0e6ba8}
+.search{width:100%;padding:12px;border-radius:8px;border:2px solid #0e6ba8;font-size:16px;margin:10px 0;box-sizing:border-box}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.card{background:#fff;border:1px solid #ddd;border-radius:10px;padding:12px;text-decoration:none;color:#333;display:block;transition:0.2s}
+.card:hover{background:#0e6ba8;color:#fff;transform:scale(1.02)}
+.card b{color:#b80000}.card:hover b{color:#ffeb3b}
+.count{text-align:center;margin:10px;color:#666}
 </style>
 </head>
 <body>
+<h1>🏛️ بلدية العقلة - ولاية تبسة<br>الفهرس الرسمي 001 - 115</h1>
+<input type="text" id="search" class="search" placeholder="ابحث هنا... مثلا: الري، الضرائب، الحالة المدنية">
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
 
-<div class="header">
-<h1>الهيكل التنظيمي الهرمي<br>بلدية العقلة - ولاية تبسة</h1>
-<p>19 مقعد حسب المرسوم 26-282 لسنة 2026 - القانون 10-11 المعدل بالأمر 21-13</p>
-</div>
+<script>
+const files = [
+"001-hal-madaniya.html","002-tanzim-3am.html","003-intikhabat.html","004-chououn-ijtima3iya.html","005-mizaniya.html","006-momtallakat.html","007-safaqat.html","008-achghal-jadida.html","009-siha-nadhafa.html","010-tarbiya-ta3lim.html",
+"011-thaqafa-chabab.html","012-riyadha.html","013-sakan.html","014-tachghil.html","015-istiثمار.html","016-biئة.html","017-naql.html","018-failaha.html","019-riy.html","020-achghal-omoumiya.html",
+"021-taamir.html","022-amlak-dawla.html","023-daraib.html","024-khazina.html","025-himaya-madaniya.html","026-amn.html","027-ghabat.html","028-tijara.html","029-sina3a.html","030-siyaha.html",
+"031-taqa.html","032-barid.html","033-tachghil-anem.html","034-tadamoun.html","035-mojahidin.html","036-chououn-diniya.html","037-chabab-riyadha.html","038-thaqafa.html","039-ta3lim-mihani.html","040-jami3a.html",
+"041-mahkama.html","042-majlis-qadai.html","043-wilaya.html","044-daira.html","045-baladiya.html","046-qanoun-baladiya.html","047-moudawala.html","048-qarar.html","049-moursala.html","050-mahdhar.html",
+"051-taqrir.html","052-sijil.html","053-archif.html","054-raqmana.html","055-ittisal.html","056-ALAAM.html","057-chafafiya.html","058-mouwatine.html","059-chikaya.html","060-tadbir-tafouidi.html",
+"061-lajna-safaqat.html","062-lajna-mounaqasa.html","063-maktab-safaqat.html","064-code-marché.html","065-POS.html","066-PDAU.html","067-PERMIS.html","068-URBANISME.html","069-CADASTRE.html","070-DOMAN.html",
+"071-CONSERVATION.html","072-AGENCE-FONCIERE.html","073-ADE.html","074-ONA.html","075-SONELGAZ.html","076-OPGI.html","077-AADL.html","078-ANL.html","079-DLEP.html","080-DUC.html",
+"081-DTP.html","082-DRE.html","083-DMI.html","084-DOT.html","085-DCP.html","086-DCW.html","087-DASS.html","088-DJSL.html","089-DC.html","090-ACTION-SOCIALE.html",
+"091-JEUNESSE-SPORT.html","092-CULTURE.html","093-sijil-tijari.html","094-sina3a-taqlidiya.html","095-siyaha.html","096-achghal-omoumiya.html","097-ray-mawarid-maiya.html","098-taqa-manajim.html","099-naql.html","100-barid-mowasalat.html",
+"101-biئة.html","102-taamir-urbanisme.html","103-amlak-dawla.html","104-daraib.html","105-khazina.html","106-himaya-madaniya.html","107-amn-watani.html","108-ghabat.html","109-failaha.html","110-tarbiya.html",
+"111-siha.html","112-tachghil.html","113-taqafiya-islmiya.html","114-mojahidin.html","115-ittisal.html"
+];
 
-<h2>📚 الفهرس الشامل - 101 ملف - اضغط للدخول</h2>
-
-<div class="grid">
-<div class="card"><a href="001-rafika-boudraa.html">001 الهيكل العام</a></div>
-<div class="card"><a href="002-majlis-chabi-baladi.html">002 المجلس الشعبي</a></div>
-<div class="card"><a href="003-rais-majlis.html">003 رئيس المجلس</a></div>
-<div class="card"><a href="004-noab-rais.html">004 النواب 3</a></div>
-<div class="card"><a href="005-amin-aam.html">005 الأمين العام</a></div>
-<div class="card"><a href="006-lijan-daima.html">006 اللجان الدائمة</a></div>
-<div class="card"><a href="007-maslaha-idara-maliya.html">007 الإدارة والمالية</a></div>
-<div class="card"><a href="008-maslaha-tandim-chououn.html">008 التنظيم والشؤون العامة</a></div>
-<div class="card"><a href="009-maslaha-taamir-tajhiz.html">009 التعمير والتجهيز</a></div>
-<div class="card"><a href="010-maslaha-nadafa-chabakat.html">010 النظافة والشبكات</a></div>
-<div class="card"><a href="011-maktab-tandim-intikhabat.html">011 مكتب التنظيم والانتخابات</a></div>
-<div class="card"><a href="012-maktab-hala-madaniya.html">012 الحالة المدنية</a></div>
-<div class="card"><a href="013-maktab-khidma-wataniya.html">013 الخدمة الوطنية</a></div>
-<div class="card"><a href="014-maktab-chououn-ijtimaia.html">014 الشؤون الاجتماعية</a></div>
-<div class="card"><a href="015-maktab-sihha-nadafa.html">015 الصحة والنظافة</a></div>
-<div class="card"><a href="016-maktab-achghal-masalih.html">016 الأشغال والمصالح التقنية</a></div>
-<div class="card"><a href="017-maktab-amlak-baladiya.html">017 أملاك البلدية</a></div>
-<div class="card"><a href="018-maktab-mizaniya-mohasaba.html">018 الميزانية والمحاسبة</a></div>
-<div class="card"><a href="019-maktab-ajour-mostakhdamin.html">019 الأجور والمستخدمين</a></div>
-<div class="card"><a href="020-maktab-tajhiz-sayana.html">020 التجهيز والصيانة</a></div>
-<div class="card"><a href="021-biomtrie-jawaz-safar.html">021 البيومتري وجواز السفر</a></div>
-<div class="card"><a href="022-tafouidat-molhaq-idari.html">022 التفويضات والملحق</a></div>
-<div class="card"><a href="023-mourafaq-tarbawiya-chabab.html">023 المرافق التربوية والشباب</a></div>
-<div class="card"><a href="024-souq-osboui-mawashi.html">024 السوق الأسبوعي</a></div>
-<div class="card"><a href="025-madabih-baladiya.html">025 المذابح</a></div>
-<div class="card"><a href="026-mahachir-rafika.html">026 المحاشر</a></div>
-<div class="card"><a href="027-rafika-boudraa-v2.html">027 رفيقة بودراع</a></div>
-<div class="card"><a href="028-rafika-boudraa-v3.html">028 رفيقة بودراع V3</a></div>
-<div class="card"><a href="029-mandobiya-filaha.html">029 مندوبية الفلاحة</a></div>
-<div class="card"><a href="030-wassit-joumhouria.html">030 وسيط الجمهورية</a></div>
-<div class="card"><a href="031-daira-elogla.html">031 دائرة العقلة</a></div>
-<div class="card"><a href="032-wilaya-tebessa.html">032 ولاية تبسة</a></div>
-<div class="card"><a href="033-ibtissam-boulahia.html">033 ابتسام بولحية</a></div>
-<div class="card"><a href="034-ibtissam-boulahia-v2.html">034 ابتسام V2</a></div>
-<div class="card"><a href="035-mahkama-idariya.html">035 المحكمة الإدارية</a></div>
-<div class="card"><a href="036-majlis-dawla.html">036 مجلس الدولة</a></div>
-<div class="card"><a href="037-mahkama-dostouriya.html">037 المحكمة الدستورية</a></div>
-<div class="card"><a href="038-barlaman-bi-ghorfatayh.html">038 البرلمان</a></div>
-<div class="card"><a href="039-wizara-dakhiliya.html">039 وزارة الداخلية</a></div>
-<div class="card"><a href="040-wizara-maliya.html">040 وزارة المالية</a></div>
-<div class="card"><a href="041-wizara-tarbiya.html">041 وزارة التربية</a></div>
-<div class="card"><a href="042-wizara-siha.html">042 وزارة الصحة</a></div>
-<div class="card"><a href="043-wizara-failaha.html">043 وزارة الفلاحة</a></div>
-<div class="card"><a href="044-wizara-sakan.html">044 وزارة السكن</a></div>
-<div class="card"><a href="045-wizara-achghal-omoumiya.html">045 الأشغال العمومية</a></div>
-<div class="card"><a href="046-wizara-naql.html">046 وزارة النقل</a></div>
-<div class="card"><a href="047-wizara-taqa.html">047 وزارة الطاقة</a></div>
-<div class="card"><a href="048-wizara-tidjara.html">048 وزارة التجارة</a></div>
-<div class="card"><a href="049-wizara-sinaa.html">049 وزارة الصناعة</a></div>
-<div class="card"><a href="050-wizara-moujahidin.html">050 وزارة المجاهدين</a></div>
-<div class="card"><a href="051-wizara-chabab-riyada.html">051 الشباب والرياضة</a></div>
-<div class="card"><a href="052-wizara-thaqafa.html">052 وزارة الثقافة</a></div>
-<div class="card"><a href="053-wizara-ittisal.html">053 وزارة الاتصال</a></div>
-<div class="card"><a href="054-wizara-adl.html">054 وزارة العدل</a></div>
-<div class="card"><a href="055-wizara-kharijiya.html">055 الخارجية</a></div>
-<div class="card"><a href="056-wizara-biئة.html">056 وزارة البيئة</a></div>
-<div class="card"><a href="057-wizara-tadamon.html">057 وزارة التضامن</a></div>
-<div class="card"><a href="058-wizara-sayid-bahri.html">058 الصيد البحري</a></div>
-<div class="card"><a href="059-wizara-riy.html">059 وزارة الري</a></div>
-<div class="card"><a href="060-wizara-bariid.html">060 البريد والمواصلات</a></div>
-<div class="card"><a href="061-ANLITS.html">061 ANLITS</a></div>
-<div class="card"><a href="062-ANAR.html">062 ANAR</a></div>
-<div class="card"><a href="063-ANGEM.html">063 ANGEM</a></div>
-<div class="card"><a href="064-ANAD.html">064 ANAD</a></div>
-<div class="card"><a href="065-CNAC.html">065 CNAC</a></div>
-<div class="card"><a href="066-CASNOS.html">066 CASNOS</a></div>
-<div class="card"><a href="067-CNASS.html">067 CNAS</a></div>
-<div class="card"><a href="068-CNR.html">068 CNR التقاعد</a></div>
-<div class="card"><a href="069-ADE.html">069 الجزائرية للمياه ADE</a></div>
-<div class="card"><a href="070-ONA.html">070 الديوان الوطني للتطهير ONA</a></div>
-<div class="card"><a href="071-SONELGAZ.html">071 سونلغاز</a></div>
-<div class="card"><a href="072-NAFTAL.html">072 نفطال</a></div>
-<div class="card"><a href="073-ACTEL.html">073 اتصالات الجزائر</a></div>
-<div class="card"><a href="074-POSTE.html">074 بريد الجزائر</a></div>
-<div class="card"><a href="075-AADL.html">075 عدل AADL</a></div>
-<div class="card"><a href="076-OPGI.html">076 ديوان الترقية OPGI</a></div>
-<div class="card"><a href="077-CADASTRE.html">077 مسح الأراضي</a></div>
-<div class="card"><a href="078-DOMANES.html">078 أملاك الدولة</a></div>
-<div class="card"><a href="079-IMPOTS.html">079 الضرائب</a></div>
-<div class="card"><a href="080-TRESOR.html">080 الخزينة</a></div>
-<div class="card"><a href="081-DOUANE.html">081 الجمارك</a></div>
-<div class="card"><a href="082-SURETE.html">082 الأمن الوطني</a></div>
-<div class="card"><a href="083-GENDARMERIE.html">083 الدرك الوطني</a></div>
-<div class="card"><a href="084-PROTECTION-CIVILE.html">084 الحماية المدنية</a></div>
-<div class="card"><a href="085-FORETS.html">085 الغابات</a></div>
-<div class="card"><a href="086-INSPECTION-TRAVAIL.html">086 مفتشية العمل</a></div>
-<div class="card"><a href="087-COMMERCE.html">087 مديرية التجارة</a></div>
-<div class="card"><a href="088-INDUSTRIE.html">088 مديرية الصناعة</a></div>
-<div class="card"><a href="089-EMPLOI.html">089 مديرية التشغيل ANEM</a></div>
-<div class="card"><a href="090-ACTION-SOCIALE.html">090 النشاط الاجتماعي DAS</a></div>
-<div class="card"><a href="091-JEUNESSE-SPORT.html">091 الشباب والرياضة DJS</a></div>
-<div class="card"><a href="092-CULTURE.html">092 مديرية الثقافة</a></div>
-<div class="card"><a href="093-TOURISME.html">093 السياحة والصناعة التقليدية</a></div>
-<div class="card"><a href="094-sina3a-taqlidiya.html">094 الصناعة التقليدية</a></div>
-<div class="card"><a href="095-siyaha.html">095 مصلحة السياحة</a></div>
-<div class="card"><a href="096-achghal-omoumiya.html">096 الأشغال العمومية DTP</a></div>
-<div class="card"><a href="097-ray-mawarid-maiya.html">097 الري والموارد المائية</a></div>
-<div class="card"><a href="098-taqa-manajim.html">098 الطاقة والمناجم</a></div>
-<div class="card"><a href="099-naql.html">099 مديرية النقل</a></div>
-<div class="card"><a href="100-barid-mowasalat.html">100 البريد والمواصلات</a></div>
-<div class="card"><a href="101-biئة.html">101 البيئة</a></div>
-</div>
-
-<p style="text-align:center; margin-top:20px;"><a href="https://echayebc.github.io/baladiya-elogla-tebessa/">🔄 تحديث الصفحة</a></p>
-
+const grid = document.getElementById('grid');
+const count = document.getElementById('count');
+function render(list){
+grid.innerHTML='';
+list.forEach(f=>{
+const num = f.split('-')[0];
+const a = document.createElement('a');
+a.href=f;
+a.className='card';
+a.innerHTML=`<b>${num}</b> - ${f.replace('.html','').replace(/-/g,' ')}`;
+grid.appendChild(a);
+});
+count.textContent=`عدد الملفات: ${list.length} ملف`;
+}
+render(files);
+document.getElementById('search').addEventListener('input',e=>{
+const q=e.target.value.toLowerCase();
+const filt=files.filter(f=>f.toLowerCase().includes(q));
+render(filt);
+});
+</script>
 </body>
 </html>
