@@ -2,4 +2,43 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بلدية العقلة - تبسة - 19 مقعد</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Tajawal',sans-serif;background:#f4fbff;margin:0;padding:10px}
+h1{text-align:center;color:#0d6fb8;font-size:20px;line-height:1.6}
+.wrap{max-width:1000px;margin:auto;display:flex;flex-direction:column;align-items:center;gap:18px}
+.box{border:2.5px solid #0d6fb8;border-radius:10px;background:#fff;padding:12px 18px;min-width:210px;text-align:center;color:#0d6fb8;font-weight:700;cursor:pointer;position:relative}
+.box:hover{background:#e6f3ff}
+.tasks{display:none;margin-top:10px;text-align:right;font-weight:400;font-size:13px;background:#fffbe6;border:1px solid #d0d0d0;border-radius:8px;padding:10px;line-height:1.9;color:#222}
+.tasks.show{display:block}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.line{width:2px;height:20px;background:#0d6fb8}
+.hline{height:2px;background:#0d6fb8;width:80%;margin:auto}
+</style>
+</head>
+<body>
+<h1>الهيكل التنظيمي الهرمي<br>بلدية العقلة - ولاية تبسة<br><small style="font-size:13px;color:#555">19 مقعد حسب المرسوم 26-282 لسنة 2026 - القانون 11-10 المعدل بالأمر 21-13</small></h1>
+<div class="wrap">
+  <div class="row">
+    <div class="box" onclick="this.querySelector('.t').classList.toggle('show')">المجلس الشعبي البلدي - 19 مقعد<div class="t tasks">المادة 15: هيئة مداولة، يصادق على الميزانية والمخطط البلدي للتنمية PCD، يسير الممتلكات البلدية، ينشئ اللجان</div></div>
+    <div class="box" onclick="this.querySelector('.t').classList.toggle('show')">رئيس المجلس الشعبي البلدي<div class="t tasks">م65-82: ينتخب حسب قاعدة 35% (7 مقاعد)، آمر بالصرف، ضابط حالة مدنية وشرطة قضائية، ينفذ المداولات، يعين الموظفين، يمضي رخص البناء</div></div>
+  </div>
+  <div class="hline"></div>
+  <div class="row">
+    <div><div class="line" style="margin:auto"></div><div class="box" onclick="this.querySelector('.t').classList.toggle('show')">المندوبون<div class="t tasks">م133-138: يمثلون الرئيس في الملحقات الإدارية، تفويض في الحالة المدنية</div></div></div>
+    <div><div class="line" style="margin:auto"></div><div class="box" onclick="this.querySelector('.t').classList.toggle('show')">النواب (3 نواب)<div class="t tasks">م67: بلدية 19 مقعد لها 3 نواب، يساعدون الرئيس وينوبون عنه حسب الترتيب</div></div></div>
+    <div><div class="line" style="margin:auto"></div><div class="box" onclick="this.querySelector('.t').classList.toggle('show')">الأمين العام<div class="t tasks">م130-131: المنشط الإداري الأول، ينسق كل المديريات، يحضر المداولات، مسؤول عن الأرشيف والرقمنة، يتلقى تفويض إمضاء</div></div></div>
+    <div><div class="line" style="margin:auto"></div><div class="box" onclick="this.querySelector('.t').classList.toggle('show')">اللجان الدائمة<div class="t tasks">م32: 4 لجان إجبارية: اقتصاد ومالية، تهيئة وتعمير، شؤون اجتماعية وثقافة، نظافة وبيئة</div></div></div>
+  </div>
+  <div class="hline"></div>
+  <div class="row">
+    <div class="box" onclick="this.querySelector('.t').classList.toggle('show')">مصلحة الإدارة والمالية<div class="t tasks">المستخدمين (مرسوم 11-334)، المالية والميزانية (م183)، الصفقات العمومية والممتلكات (م160)</div></div>
+    <div class="box" onclick="this.querySelector('.t').classList.toggle('show')">مصلحة التنظيم والشؤون العامة<div class="t tasks">حالة مدنية (م26-91)، انتخابات، بطاقية، منازعات، أرشيف م139</div></div>
+    <div class="box" onclick="this.querySelector('.t').classList.toggle('show')">مصلحة التعمير والتجهيز<div class="t tasks">م149: رخص البناء والهدم، متابعة PCD، صيانة المدارس والمساجد</div></div>
+    <div class="box" onclick="this.querySelector('.t').classList.toggle('show')">مصلحة النظافة والشبكات<div class="t tasks">م123-124: ماء، إنارة، صرف صحي، نفايات، مساحات خضراء - العمال: سائق، حارس، عامل نظافة، كهربائي، بستاني</div></div>
+  </div>
+</div>
+</body>
+</html>
