@@ -4,138 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بلدية العقلة - ولاية تبسة</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e6ba8">
 <style>
-body{background:#eef6ff;font-family:Tahoma;margin:0;padding:10px}
-.header{border:4px solid #c00000;border-radius:20px;background:#fff;padding:15px;text-align:center;margin-bottom:12px}
-.header h2{color:#0e6ba8;margin:5px;line-height:1.8}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{border:3px solid #0e6ba8;border-radius:15px;background:#fff;padding:14px;text-align:center;color:#0e6ba8;font-weight:bold;text-decoration:none;font-size:15px;line-height:1.4;min-height:45px;display:flex;align-items:center;justify-content:center}
-.card:hover{background:#0e6ba8;color:#fff}
+*{box-sizing:border-box}
+body{background:#eef6ff;font-family:Tahoma,Arial;margin:0;padding:12px;font-size:22px}
+.header{border:4px solid #c00000;border-radius:25px;background:#fff;padding:18px;text-align:center;margin-bottom:15px}
+.header h2{color:#0e6ba8;margin:5px;line-height:1.9;font-size:28px}
+.header p{font-size:20px;line-height:1.8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{border:3px solid #0e6ba8;border-radius:18px;background:#fff;padding:18px;text-align:center;color:#0e6ba8;font-weight:bold;text-decoration:none;font-size:21px;line-height:1.5;min-height:75px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 6px rgba(0,0,0,0.1)}
+.card:hover{background:#0e6ba8;color:#fff;transform:scale(1.03)}
+.btn-install{background:#0e6ba8;color:#fff;border:none;padding:15px 25px;border-radius:15px;font-size:22px;font-weight:bold;width:100%;margin:15px 0;cursor:pointer;display:none}
+.topbar{text-align:center;margin-bottom:10px}
 </style>
 </head>
 <body>
 <div class="header">
 <h2>الهيكل التنظيمي الهرمي<br>بلدية العقلة - ولاية تبسة</h2>
-<p>19 مقعد - القانون 10-11</p>
+<p>19 مقعد حسب المرسوم 26-282 لسنة 2026<br>القانون 10-11 المعدل بالأمر 13-21</p>
 </div>
 
-<div class="grid">
-<a class="card" href="001-majlis-chaabi.html">001 المجلس الشعبي</a>
-<a class="card" href="002-raiss-majlis.html">002 رئيس المجلس</a>
-<a class="card" href="003-noab-raiss.html">003 نواب الرئيس</a>
-<a class="card" href="004-mandoubine-khassine.html">004 المندوبين الخاصين</a>
-<a class="card" href="005-lijan-daima.html">005 اللجان الدائمة</a>
-<a class="card" href="006-amir-aam.html">006 الأمين العام</a>
-<a class="card" href="007-amanet-raiss.html">007 أمانة الرئيس</a>
-<a class="card" href="008-maktab-dabt.html">008 مكتب الضبط</a>
-<a class="card" href="009-archive-baladiya.html">009 الأرشيف</a>
-<a class="card" href="010-informatique-rakmana.html">010 الإعلام الآلي والرقمنة</a>
-<a class="card" href="011-maktab-milad.html">011 مكتب الميلاد</a>
-<a class="card" href="012-maktab-zawaj.html">012 مكتب الزواج</a>
-<a class="card" href="013-maktab-wafat.html">013 مكتب الوفاة</a>
-<a class="card" href="014-tasdik-imda.html">014 التصديق والإمضاء</a>
-<a class="card" href="015-maktab-ikama.html">015 مكتب الإقامة</a>
-<a class="card" href="016-biometrie-passport.html">016 البيومتري وجواز السفر</a>
-<a class="card" href="017-molhakat-idariya.html">017 الملحقات الإدارية</a>
-<a class="card" href="018-tandim-mounazaat.html">018 تنظيم المنازعات</a>
-<a class="card" href="019-maktab-jam3iyat.html">019 مكتب الجمعيات</a>
-<a class="card" href="020-maktab-intikhabat.html">020 مكتب الانتخابات</a>
-<a class="card" href="021-mounazaat-kadaya.html">021 المنازعات والقضايا</a>
-<a class="card" href="022-tandim-rokhas.html">022 تنظيم الرخص</a>
-<a class="card" href="023-maliya-mouhasaba.html">023 المالية والمحاسبة</a>
-<a class="card" href="024-maktab-mizaniya.html">024 مكتب الميزانية</a>
-<a class="card" href="025-mouhasaba-iltizam.html">025 المحاسبة والالتزام</a>
-<a class="card" href="026-iradat-jibaya.html">026 الإيرادات والجباية</a>
-<a class="card" href="027-safakat-omomiya.html">027 الصفقات العمومية</a>
-<a class="card" href="028-daftar-chourout.html">028 دفتر الشروط</a>
-<a class="card" href="029-mouchtarayat-makhzen.html">029 المشتريات والمخزن</a>
-<a class="card" href="030-tajhiz-achghal.html">030 التجهيز والأشغال</a>
-<a class="card" href="031-taamir-bina.html">031 التعمير والبناء</a>
-<a class="card" href="032-rokhas-bina-tafsil.html">032 رخص البناء</a>
-<a class="card" href="033-amlak-aqariya.html">033 الأملاك العقارية</a>
-<a class="card" href="034-hadhira-siyana.html">034 الحظيرة والصيانة</a>
-<a class="card" href="035-nadhafa-bia.html">035 النظافة والبيئة</a>
-<a class="card" href="036-hifd-siha-tafsil.html">036 حفظ الصحة</a>
-<a class="card" href="037-miyah-tathir.html">037 المياه والتطهير</a>
-<a class="card" href="038-choun-ijtima3iya.html">038 الشؤون الاجتماعية</a>
-<a class="card" href="039-minha-madrasiya-ramadhan.html">039 المنحة والمساعدات</a>
-<a class="card" href="040-madaris-naql.html">040 المدارس والنقل</a>
-<a class="card" href="041-itam-madrasi-tafsil.html">041 الإطعام المدرسي</a>
-<a class="card" href="042-intikhabat-montakhabin.html">042 المنتخبين</a>
-<a class="card" href="043-jamiyat-lijan-ahya.html">043 الجمعيات ولجان الأحياء</a>
-<a class="card" href="044-monazaat-qanouniya.html">044 المنازعات القانونية</a>
-<a class="card" href="045-archive-tawthiq.html">045 التوثيق والأرشيف</a>
-<a class="card" href="046-i3lam-raqmana.html">046 الإعلام والرقمنة</a>
-<a class="card" href="047-wiqaya-amn.html">047 الوقاية والأمن</a>
-<a class="card" href="048-chababik-mowahada.html">048 الشبابيك الموحدة</a>
-<a class="card" href="049-moustakhdamin.html">049 المستخدمين</a>
-<a class="card" href="050-ojour-mohasaba.html">050 الأجور والمحاسبة</a>
-<a class="card" href="051-wasail-siyana.html">051 الوسائل والصيانة</a>
-<a class="card" href="052-khadamat-ijtima3iya.html">052 الخدمات الاجتماعية</a>
-<a class="card" href="053-chorta-baladiya.html">053 الشرطة البلدية</a>
-<a class="card" href="054-sijil-qararat.html">054 سجل القرارات</a>
-<a class="card" href="055-intikhabat-montakhabin.html">055 الانتخابات</a>
-<a class="card" href="056-istikbal-tawjih.html">056 الاستقبال والتوجيه</a>
-<a class="card" href="057-tawthik-tasdiq.html">057 التوثيق والتصديق</a>
-<a class="card" href="058-monaza3at.html">058 المنازعات</a>
-<a class="card" href="059-wiqaya-nadhafa.html">059 الوقاية والنظافة</a>
-<a class="card" href="060-souk-joumla.html">060 السوق الأسبوعي</a>
-<a class="card" href="061-naql-i3tam.html">061 النقل والإطعام</a>
-<a class="card" href="062-masa7at-khadra.html">062 المساحات الخضراء</a>
-<a class="card" href="063-inara-tourouqat.html">063 الإنارة والطرقات</a>
-<a class="card" href="064-miyah-tathir.html">064 المياه والتطهير</a>
-<a class="card" href="065-momtalakat-hadhira.html">065 الممتلكات والحظيرة</a>
-<a class="card" href="066-ta3mir-rokhas.html">066 التعمير والرخص</a>
-<a class="card" href="067-mawalid.html">067 المواليد</a>
-<a class="card" href="068-wafayat.html">068 الوفيات</a>
-<a class="card" href="069-zawaj-talaq.html">069 الزواج والطلاق</a>
-<a class="card" href="070-biometri.html">070 البيومتري</a>
-<a class="card" href="071-bitaqa-ramadiya.html">071 البطاقة الرمادية</a>
-<a class="card" href="072-tandhim-cho2oun.html">072 تنظيم الشؤون العامة</a>
-<a class="card" href="073-intikhabat.html">073 الانتخابات</a>
-<a class="card" href="074-khidma-wataniya.html">074 الخدمة الوطنية</a>
-<a class="card" href="075-jam3iyat.html">075 الجمعيات</a>
-<a class="card" href="076-nachat-ijtima3i.html">076 النشاط الاجتماعي</a>
-<a class="card" href="077-siha-nadhafa.html">077 الصحة والنظافة</a>
-<a class="card" href="078-thaqafa-riyada.html">078 الثقافة والرياضة</a>
-<a class="card" href="079-amlak-3aqar.html">079 الأملاك العقارية</a>
-<a class="card" href="080-ta3mir-rokhas.html">080 التعمير</a>
-<a class="card" href="081-safaqat-baladiya.html">081 صفقات البلدية</a>
-<a class="card" href="082-achghal-siyana.html">082 الأشغال والصيانة</a>
-<a class="card" href="083-miyah-tathir.html">083 المياه والتطهير</a>
-<a class="card" href="084-daraib-rousoum.html">084 الضرائب والرسوم</a>
-<a class="card" href="085-wathaiq-tawthiq.html">085 الوثائق والتوثيق</a>
-<a class="card" href="086-mokhatat-baladi-PCD.html">086 المخطط البلدي PCD</a>
-<a class="card" href="087-mizaniya-baladiya.html">087 ميزانية البلدية</a>
-<a class="card" href="088-hisab-idari-tasyir.html">088 الحساب الإداري</a>
-<a class="card" href="089-momtalakat-wataniya.html">089 الممتلكات الوطنية</a>
-<a class="card" href="090-naz3-milkiya.html">090 نزع الملكية</a>
-<a class="card" href="091-mash-araadi-hifdh.html">091 مسح الأراضي</a>
-<a class="card" href="092-tahyiia-omraniya.html">092 التهيئة العمرانية</a>
-<a class="card" href="093-sijil-tijari.html">093 السجل التجاري</a>
-<a class="card" href="094-sina3a-taqlidiya.html">094 الصناعة التقليدية</a>
-<a class="card" href="095-siyaha.html">095 السياحة</a>
-<a class="card" href="096-achghal-omoumiya.html">096 الأشغال العمومية DTP</a>
-<a class="card" href="097-ray-mawarid-maiya.html">097 الري والموارد المائية</a>
-<a class="card" href="098-taqa-manajim.html">098 الطاقة والمناجم</a>
-<a class="card" href="099-naql.html">099 النقل</a>
-<a class="card" href="100-barid-mowasalat.html">100 البريد والمواصلات</a>
-<a class="card" href="101-biئة.html">101 البيئة</a>
-<a class="card" href="102-taamir-urbanisme.html">102 التعمير و DUAC</a>
-<a class="card" href="103-amlak-dawla.html">103 أملاك الدولة</a>
-<a class="card" href="104-daraib.html">104 الضرائب</a>
-<a class="card" href="105-khazina.html">105 الخزينة</a>
-<a class="card" href="106-himaya-madaniya.html">106 الحماية المدنية</a>
-<a class="card" href="107-amn-watani.html">107 الأمن الوطني</a>
-<a class="card" href="108-ghabat.html">108 الغابات</a>
-<a class="card" href="109-failaha.html">109 الفلاحة</a>
-<a class="card" href="110-tarbiya.html">110 التربية</a>
-<a class="card" href="111-siha.html">111 الصحة</a>
-<a class="card" href="112-tachghil.html">112 التشغيل ANEM</a>
-<a class="card" href="113-taqafiya-islamiya.html">113 الشؤون الدينية</a>
-<a class="card" href="114-mojahidin.html">114 المجاهدين</a>
-<a class="card" href="115-ittisal.html">115 الاتصال</a>
+<div class="topbar">
+<button id="installBtn" class="btn-install">📲 ثبّت التطبيق على هاتفك</button>
+<div id="offlineStatus" style="color:green;font-weight:bold"></div>
 </div>
-<br><center><a href="#" onclick="location.reload()" style="color:#555">🔄 تحديث الصفحة</a></center>
+
+<div class="grid" id="grid"></div>
+
+<script>
+// توليد 115 زر تلقائيا مع خط كبير
+const container = document.getElementById('grid');
+const titles = {
+"001":"المجلس الشعبي","002":"رئيس المجلس","003":"نواب الرئيس","004":"المندوبين الخاصين","005":"اللجان الدائمة","006":"الأمين العام","007":"أمانة الرئيس","008":"مكتب الضبط","009":"الأرشيف","010":"الإعلام الآلي",
+"011":"مكتب الميلاد","012":"مكتب الزواج","013":"مكتب الوفاة","014":"التصديق والإمضاء","015":"مكتب الإقامة","016":"البيومتري وجواز السفر","017":"الملحقات الإدارية","018":"تنظيم المنازعات","019":"مكتب الجمعيات","020":"مكتب الانتخابات"
+};
+// توليد باقي الأسماء تلقائيا
+for(let i=1;i<=115;i++){
+  let num = String(i).padStart(3,'0');
+  let name = titles[num] || `ملف رقم ${num}`;
+  let a = document.createElement('a');
+  a.className='card';
+  a.textContent = num + ' ' + name;
+  a.href='#';
+  a.dataset.num=num;
+  container.appendChild(a);
+}
+
+// تحميل قائمة الملفات الحقيقية من GitHub
+let fileList=[];
+fetch('https://api.github.com/repos/Echayebc/baladiya-elogla-tebessa/contents')
+.then(r=>r.json()).then(data=>{
+  fileList = data.filter(f=>f.name.endsWith('.html')).map(f=>f.name);
+  document.getElementById('offlineStatus').textContent = '✅ عدد الملفات الجاهزة: '+fileList.length+' - يشتغل بدون أنترنت بعد أول زيارة';
+  document.querySelectorAll('.card').forEach(card=>{
+    const num = card.dataset.num;
+    let found = fileList.find(n=>n.startsWith(num));
+    if(found){
+      card.href = found;
+      card.onclick = null;
+    } else {
+      card.style.opacity='0.5';
+    }
+  });
+  // حفظ للـ offline
+  if('caches' in window){
+    caches.open('baladiya-elogla-v3').then(cache=>{
+      fileList.forEach(f=>cache.add(f));
+    });
+  }
+});
+
+// تثبيت Service Worker للعمل بدون انترنت
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
+
+// زر تثبيت التطبيق
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  document.getElementById('installBtn').style.display='block';
+});
+document.getElementById('installBtn').addEventListener('click', ()=>{
+  if(deferredPrompt){ deferredPrompt.prompt(); }
+});
+</script>
 </body>
 </html>
