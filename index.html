@@ -3,54 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - تبسة</title>
+<title>بلدية العقلة - ولاية تبسة - 150 ملف</title>
 <style>
-body{background:#eef6ff;margin:0;font-family:Tahoma}
-.header{background:#0e6ba8;color:#fff;text-align:center;padding:20px;border-radius:0 0 20px 20px}
-.header h1{font-size:28px;margin:0}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;color:#0e6ba8;font-weight:900;font-size:16px;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:10px;line-height:1.3}
-.card b{font-size:18px;color:#111;margin-top:4px}
-#loading{text-align:center;padding:20px;font-size:22px;color:#0e6ba8}
+body{background:#eef6ff;margin:0;font-family:Tahoma;padding:0 0 20px 0}
+.header{background:#0e6ba8;color:#fff;text-align:center;padding:22px 10px;border-radius:0 0 20px 20px}
+.header h1{font-size:30px;margin:0;line-height:1.5;font-weight:900}
+.header p{font-size:18px;margin:8px 0 0 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;color:#111;font-weight:800;font-size:15px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px 6px;line-height:1.3;box-shadow:0 3px 8px rgba(14,107,168,0.12)}
+.card span{font-size:13px;color:#0e6ba8;font-weight:900}
+.card b{font-size:16px;color:#000;margin:4px 0}
+.card small{font-size:10px;color:#888;word-break:break-all}
 </style>
 </head>
 <body>
-<div class="header"><h1>بلدية العقلة - ولاية تبسة<br>150 ملف - الهيكل التنظيمي</h1></div>
-<div id="loading">جاري تحميل أسماء الملفات الحقيقية...</div>
+<div class="header"><h1>بلدية العقلة - ولاية تبسة<br>دليل الهيكل التنظيمي</h1><p>150 مصلحة وملف - اضغط للدخول</p></div>
 <div class="grid" id="grid"></div>
 
 <script>
-async function loadFiles(){
-  try{
-    const res = await fetch('https://api.github.com/repos/Echayebc/baladiya-elogla-tebessa/contents?ref=main');
-    const data = await res.json();
-    let files = data.filter(f=>f.name.endsWith('.html') && f.name!=='index.html').map(f=>f.name).sort();
-    
-    let html="";
-    files.forEach(fname=>{
-      let display = fname.replace('.html','').replace(/^\d+-/,'').replace(/-/g,' ');
-      let num = fname.match(/^\d+/) ? fname.match(/^\d+/)[0] : '';
-      html+=`<a class="card" href="${fname}"><span>${num}</span><b>${display}</b><small style="font-size:11px;color:#888">${fname}</small></a>`;
-    });
-    document.getElementById('grid').innerHTML=html;
-    document.getElementById('loading').style.display='none';
-    
-    if(files.length < 115){
-      document.getElementById('loading').innerHTML = "يوجد "+files.length+" ملف فقط في المشروع";
-      document.getElementById('loading').style.display='block';
-    }
-  }catch(e){
-    // اذا فشل API نولد 150 يدويا وما يحبسش عند 115
-    let html="";
-    for(let i=1;i<=150;i++){
-      let n=String(i).padStart(3,'0');
-      html+=`<a class="card" href="${n}-.html"><span>${n}</span><b>ملف ${n}</b></a>`;
-    }
-    document.getElementById('grid').innerHTML=html;
-    document.getElementById('loading').innerHTML="وضع احتياطي: عرض 150 ملف";
-  }
-}
-loadFiles();
+const files = [
+"001-majlis-chaabi.html","002-raiss-majlis.html","003-noab-raiss.html","004-mandoubine-khassine.html","005-lijan-daima.html","006-amin-aam.html","007-amanet-raiss.html","008-maktab-dabt.html","009-archive-baladiya.html","010-informatique-rakmana.html","011-maktab-milad.html","012-maktab-zawaj.html","013-maktab-wafat.html","014-tasdik-imda.html","015-maktab-ikama.html","016-biometrie-passport.html","017-molhakat-idariya.html","018-tandim-mounazaaet.html","019-maktab-jam3iyat.html","020-maktab-intikhabat.html","021-mounazaaet-kadaya.html","022-tandim-rokhas.html","023-safakat-omomiya.html","024-taamir-bina.html","025-amlak-aqariya.html","026-hadira-siyana.html","027-nadhafa-bia.html","028-choun-ijtima3iya.html","029-tadamoun-ijtima3i.html","030-tarbiya-ta3lim.html","031-siha-nadhafa.html","032-thaqafa-riyada.html","033-achghal-omoumiya.html","034-miyah-tathir.html","035-kahraba-gaz.html","036-tachghil-idmaj.html","037-i3lam-ittisal.html",
+"038-choun-ijtima3iya.html","039-minha-madrasiya-ramadhan.html","040-madaris-naql.html","041-itaam-madrasi-tafsiil.html","042-intikhabat-montakhabin.html","043-jamiyat-lijan-ahya.html","044-monazaat-qanouniya.html","045-archive-tawthiq.html","046-i3lam-raqmana.html","047-wiqaya-amn.html","048-chababik-mowahada.html","049-moustakhdamin.html","050-ojour-mohasaba.html","051-wasail-siyana.html","052-khadamat-ijtima3iya.html","053-chorta-baladiya.html","054-ajil-qararat.html","055-intikhabat-montakhabin.html","056-istitkal-tawjih.html","057-tawthik-tasdiq.html","058-monaza3at.html","059-wiqaya-nadhafa.html","060-souk-joumla.html","061-naql-h3am.html","062-masa7at-khadra.html","063-inara-tourouqat.html","064-miyah-tathir.html","065-momtalakat-hadhira.html","066-ta3mir-rokhas.html","067-mawalid.html","068-wafayat.html","069-zawaj-talaq.html","070-biometri.html","071-bitaqa-ramadiya.html","072-tandhim-cho2oun.html","073-intikhabat.html","074-khidma-wataniya.html","075-jam3iyat.html","076-nachat-ijtima3i.html","077-siha-nadhafa.html","078-thaqafa-riyada.html","079-amlak-3aqar.html","080-ta3mir-rokhas.html","081-safaqat-baladiya.html","082-achghal-siyana.html","083-miyah-tathir.html","084-daraib-rousoum.html","085-wathaiq-tawthiq.html","086-mokhatat-baladi-PCD.html","087-mizaniya-baladiya.html","088-hisab-idari-tasyir.html","089-momtalakat-wataniya.html","090-naz3-milkiya.html","091-mash-araadi-hifdh.html","092-tahyiia-omraniya.html","093-sijil-tijari.html","094-sina3a-taqlidiya.html","095-siyaha.html","096-achghal-omoumiya.html","097-ray-mawand-maiya.html","098-taqa-manajim.html","099-naql.html","100-barid-mowasalat.html","101-bi2a.html","102-taamir-urbanisme.html","103-amlak-dawla.html","104-daraib.html","105-khazina.html","106-himaya-madaniya.html","107-amn-watani.html","108-ghabat.html","109-failaha.html","110-tarbiya.html","111-siha.html","112-tachghil.html","113-taqfiya-isitmiya.html","114-mojahidin.html","115-ittisal.html","116-riyada.html","117-thaqafa.html","118-takwin-mihani.html","119-ta3lim-ali.html","120-qadaa.html","121-hiss-bina-watani.html","122-tadamoun-watani.html","123-amn-tarbawi.html","124-thiqa-mouwatine.html","125-chafafiya-mousawat.html","126-houkama-rassida.html","127-tanmiya-moustadama.html","128-dawla-qanoun.html","129-idara-raqmiya.html","130-khidma-omoumiya.html","131-ibtikar-mahali.html","132-mouqawalat-saghira.html","133-tachghil-chabab.html","134-maraa-rifiya.html","135-dawi-ihtiyajat.html","136-himaya-tifoula.html","137-mouwatana-fa3ila.html","138-dimouqratiya-tacharoukiya.html","139-takafour-ijtima3i.html","140-wahda-wataniya.html","141-amn-ghidhai.html","142-amn-mai.html","143-amn-taqi.html","144-tahawol-raqmi.html","145-moukawama-ijabi.html","146-istitmar-mahali.html","147-tasdir-mahali.html","148-iqtisaad-maarifa.html","149-moudoun-dhakiya.html","150-mouwatin-raqmi.html"
+];
+
+const dict = {
+"majlis-chaabi":"المجلس الشعبي","raiss-majlis":"رئيس المجلس","choun-ijtima3iya":"الشؤون الاجتماعية",
+"siha":"الصحة","tachghil":"التشغيل","taqfiya-isitmiya":"التغطية الاجتماعية","mojahidin":"المجاهدين",
+"ittisal":"الاتصال","riyada":"الرياضة","thaqafa":"الثقافة","takwin-mihani":"التكوين المهني",
+"ta3lim-ali":"التعليم العالي","qadaa":"القضاء","hiss-bina-watani":"الحس الوطني","tadamoun-watani":"التضامن الوطني",
+"amn-tarbawi":"الأمن التربوي","thiqa-mouwatine":"ثقة المواطن","chafafiya-mousawat":"الشفافية والمساواة",
+"houkama-rassida":"الحوكمة الرشيدة","tanmiya-moustadama":"التنمية المستدامة","dawla-qanoun":"دولة القانون",
+"idara-raqmiya":"الإدارة الرقمية","khidma-omoumiya":"الخدمة العمومية","ibtikar-mahali":"الابتكار المحلي",
+"mouqawalat-saghira":"المقاولات الصغيرة","tachghil-chabab":"تشغيل الشباب","maraa-rifiya":"المرأة الريفية",
+"dawi-ihtiyajat":"ذوي الاحتياجات","himaya-tifoula":"حماية الطفولة","mouwatana-fa3ila":"المواطنة الفاعلة",
+"dimouqratiya-tacharoukiya":"الديمقراطية التشاركية","takafour-ijtima3i":"التكافل الاجتماعي",
+"wahda-wataniya":"الوحدة الوطنية","amn-ghidhai":"الأمن الغذائي","amn-mai":"الأمن المائي","amn-taqi":"الأمن الطاقوي",
+"tahawol-raqmi":"التحول الرقمي","moukawama-ijabi":"المقاومة الإيجابية","istitmar-mahali":"الاستثمار المحلي",
+"tasdir-mahali":"التصدير المحلي","iqtisaad-maarifa":"اقتصاد المعرفة","moudoun-dhakiya":"المدن الذكية","mouwatin-raqmi":"المواطن الرقمي"
+};
+
+let html="";
+files.forEach(fname=>{
+  let m = fname.match(/^(\d+)-(.*)\.html/);
+  if(!m) return;
+  let num=m[1], slug=m[2];
+  let key=slug.split('-')[0];
+  let ar = dict[slug] || dict[key] || slug.replace(/-/g,' ');
+  html+=`<a class="card" href="${fname}"><span>${num}</span><b>${ar}</b><small>${fname}</small></a>`;
+});
+document.getElementById('grid').innerHTML=html;
 </script>
 </body>
 </html>
