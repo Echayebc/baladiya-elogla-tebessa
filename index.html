@@ -7,60 +7,42 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0e6ba8">
 <link rel="icon" href="khadar.jpg">
-<link rel="apple-touch-icon" href="khadar.jpg">
 <style>
-body{background:#eef6ff;margin:0;font-family:Tahoma;padding:0 0 20px 0}
-.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px 12px}
-.top-bar img{width:75px;height:75px;border-radius:50%;object-fit:cover;border:2.5px solid #0e6ba8}
-.top-bar .txt b{font-size:16px;color:#0e6ba8;display:block}
-.top-bar .txt span{font-size:13px;color:#333;display:block;font-weight:700}
-.header{background:#0e6ba8;color:#fff;text-align:center;padding:20px 10px;border-radius:0 0 20px 20px}
+body{background:#eef6ff;margin:0;font-family:Tahoma;padding-bottom:20px}
+.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}
+.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8;object-fit:cover}
+.top-bar b{color:#0e6ba8;font-size:15px}
+.top-bar span{font-size:12px;font-weight:700;color:#333;display:block}
+.header{background:#0e6ba8;color:#fff;text-align:center;padding:18px;border-radius:0 0 20px 20px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;color:#111;font-weight:800;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
-.card span{font-size:13px;color:#0e6ba8;font-weight:900}
-.card b{font-size:15px;color:#000;margin:3px 0;line-height:1.3}
-.card small{font-size:11px;color:#666;margin-top:4px;word-break:break-all}
+.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
+.card span{color:#0e6ba8;font-weight:900;font-size:13px}
+.card b{color:#000;font-size:14px;margin:4px 0}
+.card small{font-size:10px;color:#777;word-break:break-all}
 #loading{text-align:center;padding:20px;color:#0e6ba8;font-weight:900}
 </style>
 </head>
 <body>
-<div class="top-bar"><img src="khadar.jpg"><div class="txt"><b>من إعداد المترشح: الطاهر خضار</b><span>بطاقة فنية غير رسمية حول بلدية العقلة</span></div></div>
-<div class="header"><h1>بلدية العقلة - ولاية تبسة</h1><p>دليل الهيكل التنظيمي - الأسماء الحقيقية من الملفات</p></div>
-<div id="loading">جاري مطابقة الأسماء مع الملفات الحقيقية...</div>
+<div class="top-bar"><img src="khadar.jpg"><div><b>من إعداد المترشح: الطاهر خضار</b><span>بطاقة فنية غير رسمية - بلدية العقلة تبسة</span></div></div>
+<div class="header"><h1>بلدية العقلة - ولاية تبسة</h1></div>
+<div id="loading">جاري تحميل الملفات الحقيقية...</div>
 <div class="grid" id="grid"></div>
 <script>
-async function getTitleFromFile(url){
-  try{
-    const r=await fetch(url);
-    const t=await r.text();
-    const m=t.match(/<title>(.*?)<\/title>/i) || t.match(/<h1[^>]*>(.*?)<\/h1>/i);
-    return m ? m[1].trim().substring(0,60) : null;
-  }catch{ return null; }
-}
 async function load(){
-  try{
-    const res=await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents');
-    const files=await res.json();
-    const htmlFiles=files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name) && f.name!=='index.html' && f.name!=='tahmil.html').sort((a,b)=>a.name.localeCompare(b.name));
-    document.getElementById('loading').innerHTML=`تم العثور على ${htmlFiles.length} ملف - جاري قراءة العناوين الحقيقية...`;
-    let html="";
-    for(const f of htmlFiles){
-      let num=f.name.substring(0,3);
-      let realTitle=await getTitleFromFile(f.name);
-      // اذا ما لقيناش عنوان داخل الملف، نستعمل اسم الملف نفسه
-      if(!realTitle){
-        realTitle=f.name.replace('.html','').replace(/^\d{3}-/,'').replace(/-/g,' ');
-      }
-      html+=`<a class="card" href="${f.name}"><span>${num}</span><b>${realTitle}</b><small>${f.name}</small></a>`;
-    }
-    document.getElementById('grid').innerHTML=html;
-    document.getElementById('loading').style.display='none';
-  }catch(e){
-    document.getElementById('loading').innerHTML='خطأ في الاتصال، حدث الصفحة';
-  }
+ const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
+ const files = await res.json();
+ const list = files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
+ let h="";
+ list.forEach(f=>{
+   let num=f.name.substring(0,3);
+   let clean=f.name.replace('.html','').replace(/^\d{3}-/,'').replace(/-/g,' ');
+   h+=`<a class="card" href="${f.name}"><span>${num}</span><b>${clean}</b><small>${f.name}</small></a>`;
+ });
+ document.getElementById('grid').innerHTML=h;
+ document.getElementById('loading').innerHTML=`تم تحميل ${list.length} ملف - كل الملفات تفتح الآن`;
 }
 load();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
 </script>
 </body>
-</html>
+</html>ض
