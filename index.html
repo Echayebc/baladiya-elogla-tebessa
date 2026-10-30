@@ -6,16 +6,40 @@
 <title>بلدية العقلة - 150 مصلحة</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0e6ba8">
-<style>body{background:#eef6ff;margin:0;font-family:Tahoma}.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8}.header{background:#0e6ba8;color:#fff;text-align:center;padding:12px;border-radius:0 0 20px 20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}.card span{color:#0e6ba8;font-weight:900}.card b{color:#000;font-size:13px}</style>
+<style>
+body{background:#eef6ff;margin:0;font-family:Tahoma}
+.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}
+.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8}
+.header{background:#0e6ba8;color:#fff;text-align:center;padding:12px;border-radius:0 0 20px 20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
+.card span{color:#0e6ba8;font-weight:900}
+.card b{color:#000;font-size:13px}
+#loading{text-align:center;padding:15px;color:#0e6ba8;font-weight:900}
+</style>
 </head>
 <body>
 <div class="top-bar"><img src="khadar.jpg"><div><b>الطاهر خضار</b><br><span style="font-size:11px">بلدية العقلة تبسة - 150 مصلحة</span></div></div>
 <div class="header"><h2>بلدية العقلة - 150 مصلحة بالعربية</h2></div>
+<div id="loading">جاري التحميل...</div>
 <div class="grid" id="grid"></div>
-<script src="masalih-data.js?v=3"></script>
+<script src="masalih-data.js?v=5"></script>
 <script>
-let h=""; MASALIH.forEach(o=>{ h+=`<a class="card" href="${o.file}"><span>${o.num}</span><b>${o.ar}</b></a>`; });
-document.getElementById('grid').innerHTML=h;
+async function load(){
+ const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
+ const files = await res.json();
+ const list = files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
+ let h="";
+ list.forEach(f=>{
+   let num=f.name.substring(0,3);
+   let tr = MASALIH.find(x=>x.num===num);
+   let ar = tr ? tr.ar : f.name;
+   h+=`<a class="card" href="${f.name}"><span>${num}</span><b>${ar}</b></a>`;
+ });
+ document.getElementById('grid').innerHTML=h;
+ document.getElementById('loading').innerHTML=`تم تحميل ${list.length} ملف`;
+}
+load();
 </script>
 </body>
 </html>
