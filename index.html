@@ -6,6 +6,7 @@
 <title>بلدية العقلة - 150 مصلحة</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0e6ba8">
+<link rel="icon" href="khadar.jpg">
 <style>
 body{background:#eef6ff;margin:0;font-family:Tahoma}
 .top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}
@@ -15,15 +16,14 @@ body{background:#eef6ff;margin:0;font-family:Tahoma}
 .card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
 .card span{color:#0e6ba8;font-weight:900}
 .card b{color:#000;font-size:13px}
-#loading{text-align:center;padding:15px;color:#0e6ba8;font-weight:900}
 </style>
 </head>
 <body>
-<div class="top-bar"><img src="khadar.jpg"><div><b>الطاهر خضار</b><br><span style="font-size:11px">بلدية العقلة تبسة - 150 مصلحة</span></div></div>
+<div class="top-bar"><img src="khadar.jpg"><div><b>الطاهر خضار</b><br>بلدية العقلة تبسة - 150 مصلحة</div></div>
 <div class="header"><h2>بلدية العقلة - 150 مصلحة بالعربية</h2></div>
-<div id="loading">جاري التحميل...</div>
 <div class="grid" id="grid"></div>
-<script src="masalih-data.js?v=5"></script>
+
+<script src="masalih-data.js"></script>
 <script>
 async function load(){
  const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
@@ -37,9 +37,11 @@ async function load(){
    h+=`<a class="card" href="${f.name}"><span>${num}</span><b>${ar}</b></a>`;
  });
  document.getElementById('grid').innerHTML=h;
- document.getElementById('loading').innerHTML=`تم تحميل ${list.length} ملف`;
 }
 load();
+
+// هذا هو اللي يخليه يتحمل كتطبيق
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
 </script>
 </body>
 </html>
