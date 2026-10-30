@@ -28,21 +28,58 @@ body{background:#eef6ff;margin:0;font-family:Tahoma;padding-bottom:20px}
 <div id="loading">جاري تحميل الملفات الحقيقية...</div>
 <div class="grid" id="grid"></div>
 <script>
+// قاموس الترجمة - الفرنسية / الانجليزية -> عربية
+const tarjama={
+"majlis chaabi":"المجلس الشعبي البلدي",
+"raiss majlis":"رئيس المجلس الشعبي",
+"noab raiss":"نواب الرئيس",
+"mandoubine khassine":"المندوبين الخاصين",
+"amin aam":"الأمين العام للبلدية",
+"liian daima":"اللجان الدائمة",
+"maslahat hala madania":"مصلحة الحالة المدنية",
+"maslahat biomtri":"مصلحة البيومتري",
+"maslahat choun ijtimaia":"مصلحة الشؤون الاجتماعية",
+"maslahat tachghil":"مصلحة التشغيل",
+"maslahat tarbia":"مصلحة التربية",
+"maslahat siha":"مصلحة الصحة",
+"maslahat bina":"مصلحة البناء والتعمير",
+"maslahat mali":"المصلحة المالية",
+"maslahat mostakhdamin":"مصلحة المستخدمين",
+"maslahat hifz":"مصلحة الحفظ",
+"maslahat tanzim":"مصلحة التنظيم",
+"maslahat achghal":"مصلحة الأشغال",
+"maslahat nadhafa":"مصلحة النظافة",
+"maslahat miyah":"مصلحة المياه"
+};
+
 async function load(){
- const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
- const files = await res.json();
- const list = files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
- let h="";
- list.forEach(f=>{
-   let num=f.name.substring(0,3);
-   let clean=f.name.replace('.html','').replace(/^\d{3}-/,'').replace(/-/g,' ');
-   h+=`<a class="card" href="${f.name}"><span>${num}</span><b>${clean}</b><small>${f.name}</small></a>`;
- });
- document.getElementById('grid').innerHTML=h;
- document.getElementById('loading').innerHTML=`تم تحميل ${list.length} ملف - كل الملفات تفتح الآن`;
+  try{
+    const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
+    const files = await res.json();
+    const list = files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
+    let h="";
+    list.forEach(f=>{
+      let num=f.name.substring(0,3);
+      let clean=f.name.replace('.html','').replace(/^\d{3}-/,'').replace(/-/g,' ').toLowerCase().trim();
+      let arName = tarjama[clean] || clean; // إذا ما لقاش الترجمة يخلي الاسم الأصلي
+      // إذا الاسم ما تترجمش نحاول نترجم كلمة بكلمة
+      if(arName===clean){
+        arName = clean.replace(/maslahat/g,'مصلحة ').replace(/majlis/g,'مجلس ').replace(/raiss/g,'رئيس ');
+      }
+      h+=`<a class="card" href="${f.name}"><span>${num}</span><b>${arName}</b><small>${f.name}</small></a>`;
+    });
+    document.getElementById('grid').innerHTML=h;
+    document.getElementById('loading').innerHTML=`تم تحميل ${list.length} ملف - كل الملفات تفتح الآن`;
+  }catch(e){
+    document.getElementById('loading').innerHTML="خطأ في التحميل - افتح في Chrome وجرب مرة أخرى";
+  }
 }
 load();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+
+// لا نحجز api.github.com في الكاش
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js?v=8');
+}
 </script>
 </body>
 </html>
