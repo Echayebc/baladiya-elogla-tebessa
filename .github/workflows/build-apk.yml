@@ -1,38 +1,54 @@
-name: بناء تطبيق بلدية العقلة APK
+name: بناء APK بلدية العقلة
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: تثبيت NodeJS
-        uses: actions/setup-node@v4
+      - name: سحب الملفات
+        uses: actions/checkout@v4
+
+      - name: تثبيت Java 17
+        uses: actions/setup-java@v4
         with:
-          node-version: 20
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: تثبيت Bubblewrap
-        run: npm install -g @bubblewrap/cli
+      - name: تثبيت Android SDK
+        uses: android-actions/setup-android@v3
 
-      - name: بناء التطبيق
+      - name: تثبيت Capacitor
         run: |
-          mkdir app-build
-          cd app-build
-          bubblewrap init --manifest=https://echayebc.github.io/baladiya-elogla-tebessa/manifest.json --directory=.
-          bubblewrap build
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npx cap init "Baladiya Ogla" "dz.baladiya.ogla" --web-dir=.
 
-      - name: رفع الـ APK للتحميل
+      - name: إضافة منصة أندرويد
+        run: |
+          npx cap add android
+          npx cap copy android
+
+      - name: بناء APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: رفع APK للتحميل من GitHub
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v1.0-${{ github.run_number }}
-          name: تطبيق بلدية العقلة v1.0
+          tag_name: apk-v${{ github.run_number }}
+          name: "تطبيق بلدية العقلة APK - تحميل مباشر"
           body: |
-            تحميل مباشر لتطبيق بلدية العقلة الرسمي
-            بدون اعلانات - بدون انترنت - مخفي المصدر
-          files: app-build/app-release-signed.apk
+            ✅ تطبيق رسمي
+            ✅ بدون إعلانات
+            ✅ بدون أنترنت
+            ✅ مخفي المصدر - لا يظهر github في الواجهة
+            تحميل مباشر من GitHub
+          files: android/app/build/outputs/apk/debug/app-debug.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
