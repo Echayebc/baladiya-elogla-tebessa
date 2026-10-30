@@ -1,4 +1,23 @@
-*{font-size:34px !important;line-height:2.2 !important;font-weight:800 !important;font-family:Tahoma, Arial !important}
-body{background:#ffffe8 !important;padding:12px !important}
-h1{font-size:42px !important;color:#b80000 !important;text-align:center !important}
-li{font-size:32px !important;margin-bottom:18px !important}
+/* بلدية العقلة - تكبير الخط العملاق */
+*{
+  font-size: 34px !important;
+  line-height: 2.2 !important;
+  font-weight: 800 !important;
+  font-family: Tahoma, Arial !important;
+}
+html, body{
+  background:#fffbe6 !important;
+  margin:0 !important;
+  padding:12px !important;
+}
+h1{
+  font-size: 42px !important;
+  color:#b80000 !important;
+  text-align:center !important;
+  font-weight:900 !important;
+  line-height:1.6 !important;
+}
+.card, li, div, p, a, ul{
+  font-size: 33px !important;
+  line-height: 2.1 !important;
+}
