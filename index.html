@@ -3,31 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - 150 مصلحة</title>
+<title>بلدية العقلة - ولاية تبسة</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0e6ba8">
 <link rel="icon" href="khadar.jpg">
 <style>
-body{background:#eef6ff;margin:0;font-family:Tahoma;padding-bottom:80px}
-.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}
-.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8}
-.header{background:#0e6ba8;color:#fff;text-align:center;padding:14px;border-radius:0 0 20px 20px}
-.header h2{margin:0;font-size:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
-.card span{color:#0e6ba8;font-weight:900;font-size:22px}
-.card b{color:#000;font-size:13px;margin-top:4px;line-height:1.3}
+*{box-sizing:border-box}
+body{margin:0;background:#eef6ff;font-family:Tahoma,Arial}
+.top-bar{
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 12px;
+  border-bottom:2px solid #eef6ff
+}
+.top-bar .center-text{
+  flex:1;
+  text-align:center;
+  line-height:1.4
+}
+.top-bar .center-text b{color:#0e6ba8;font-size:15px}
+.top-bar .center-text span{font-size:12px;color:#333}
+.top-bar img{
+  width:68px;height:68px;
+  border-radius:50%;
+  border:3px solid #0e6ba8;
+  object-fit:cover;
+  object-position:top;
+}
+#installBtnTop{
+  background: linear-gradient(135deg, #0e6ba8 0%, #6a5cff 50%, #00d4ff 100%);
+  color:#fff;border:none;
+  padding:9px 14px;
+  border-radius:22px;
+  font-weight:900;font-size:12px;
+  cursor:pointer;
+  box-shadow:0 3px 8px rgba(14,107,168,.3);
+  white-space:nowrap
+}
+.header{
+  background:#0e6ba8;
+  color:#fff;
+  text-align:center;
+  padding:18px 10px 22px;
+  border-radius:0 0 22px 22px
+}
+.header h2{margin:0;font-size:22px;line-height:1.5}
+.header p{margin:6px 0 0;font-size:15px;opacity:.9}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:12px
+}
+.card{
+  background:#fff;
+  border:2.5px solid #0e6ba8;
+  border-radius:16px;
+  min-height:90px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  text-decoration:none;
+  padding:8px
+}
+.card span{color:#0e6ba8;font-weight:900;font-size:15px}
+.card b{color:#000;font-size:13px;margin-top:4px}
 </style>
 </head>
 <body>
 
 <div class="top-bar">
-<img src="khadar.jpg">
-<div><b>الطاهر خضار</b><br><span style="font-size:12px">بلدية العقلة تبسة - 150 مصلحة</span></div>
+  <button id="installBtnTop">📥 حمّل</button>
+  <div class="center-text">
+    <b>من إعداد المترشح: الطاهر خضار</b><br>
+    <span>بطاقة فنية غير رسمية حول بلدية العقلة - ولاية تبسة<br>لأغراض التوعية والتعريف فقط</span>
+  </div>
+  <img src="khadar.jpg">
 </div>
 
 <div class="header">
-<h2>بلدية العقلة - ولاية تبسة<br>150 مصلحة بالعربية</h2>
+  <h2>بلدية العقلة - ولاية تبسة<br>دليل الهيكل التنظيمي</h2>
+  <p>150 مصلحة وملف - اضغط للدخول</p>
 </div>
 
 <div class="grid" id="grid">جاري التحميل...</div>
@@ -44,17 +104,14 @@ async function load(){
     let num=f.name.substring(0,3);
     let tr = MASALIH.find(x=>x.num===num);
     let ar = tr ? tr.ar : f.name;
-    h+=`<a class="card" href="${f.name}?v=7"><span>${num}</span><b>${ar}</b></a>`;
+    h+=`<a class="card" href="${f.name}?v=19"><span>${num}</span><b>${ar}</b></a>`;
   });
   document.getElementById('grid').innerHTML=h;
- }catch(e){
-  document.getElementById('grid').innerHTML="خطأ في التحميل";
- }
+ }catch(e){ document.getElementById('grid').innerHTML="خطأ في التحميل"; }
 }
 load();
 </script>
 
 <script src="install.js"></script>
-
 </body>
 </html>
