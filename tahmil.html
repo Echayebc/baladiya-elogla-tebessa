@@ -3,48 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حمّل تطبيق بلدية العقلة</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0e6ba8">
-<style>
-body{margin:0;font-family:Tahoma;background:#eef6ff;text-align:center;padding:20px}
-.box{background:#fff;max-width:380px;margin:30px auto;padding:20px;border-radius:20px;border:3px solid #0e6ba8}
-.box img{width:120px;height:120px;border-radius:50%;border:3px solid #0e6ba8;object-fit:cover}
-h1{color:#0e6ba8;font-size:22px;margin:15px 0 5px 0}
-p{font-size:14px;color:#333;line-height:1.5}
-.btn{background:#0e6ba8;color:#fff;border:none;padding:15px 25px;border-radius:50px;font-size:18px;font-weight:900;width:100%;margin-top:15px;cursor:pointer}
-.small{font-size:12px;color:#888;margin-top:10px}
-</style>
+<title>تطبيق بلدية العقلة</title>
 </head>
-<body>
-<div class="box">
-<img src="khadar.jpg">
-<h1>تطبيق بلدية العقلة</h1>
-<p>من إعداد المترشح <b>الطاهر خضار</b><br>بطاقة فنية غير رسمية - 150 مصلحة<br>يشتغل بدون انترنت بعد التحميل</p>
-<button id="installBtn" class="btn">📲 حمّل التطبيق الآن</button>
-<div class="small" id="msg">اضغط على الزر واختر "إضافة إلى الشاشة الرئيسية"</div>
-<a href="index.html" style="display:block;margin-top:15px;color:#0e6ba8;font-weight:800;text-decoration:none">أو تصفح مباشرة من هنا</a>
+<body style="margin:0;font-family:Tahoma;background:#eef6ff;text-align:center">
+<div style="background:#fff;margin:15px;border:3px solid #0e6ba8;border-radius:22px;padding:20px">
+<img src="khadar.jpg" style="width:140px;height:140px;border-radius:50%;border:3px solid #0e6ba8">
+<h1 style="color:#0e6ba8">تطبيق بلدية العقلة</h1>
+<p>من إعداد المترشح <b>الطاهر خضار</b><br>150 مصلحة - يشتغل بدون انترنت</p>
+<a href="index.html" style="background:#0e6ba8;color:#fff;display:block;padding:16px;border-radius:30px;text-decoration:none;font-weight:900;font-size:18px;margin:12px 0">📲 افتح التطبيق الآن</a>
+<a href="index.html" style="background:#fff;color:#0e6ba8;border:3px solid #0e6ba8;display:block;padding:14px;border-radius:30px;text-decoration:none;font-weight:900;font-size:17px">📖 تصفح مباشرة</a>
+<p style="font-size:13px;color:#666;margin-top:15px">للتحميل كتطبيق: افتح في Chrome ثم ⋮ > إضافة إلى الشاشة الرئيسية</p>
 </div>
-<script>
-let deferredPrompt;
-const btn=document.getElementById('installBtn');
-const msg=document.getElementById('msg');
-window.addEventListener('beforeinstallprompt', (e)=>{
- e.preventDefault();
- deferredPrompt=e;
- btn.style.display='block';
-});
-btn.addEventListener('click', async ()=>{
- if(deferredPrompt){
-   deferredPrompt.prompt();
-   const {outcome}=await deferredPrompt.userChoice;
-   if(outcome==='accepted'){msg.textContent='شكرا! التطبيق سيظهر على شاشتك';}
-   deferredPrompt=null;
- }else{
-   msg.innerHTML='لتحميله: اضغط على <b>⋮</b> في المتصفح فوق ثم <b>"إضافة إلى الشاشة الرئيسية"</b> أو <b>"Installer l\'app"</b>';
- }
-});
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
-</script>
 </body>
 </html>
