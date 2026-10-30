@@ -3,93 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - ولاية تبسة</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0e6ba8">
+<title>بلدية العقلة - 150 مصلحة</title>
+<link rel="stylesheet" href="style.css">
 <style>
-*{box-sizing:border-box}
-body{background:#eef6ff;font-family:Tahoma,Arial;margin:0;padding:12px;font-size:22px}
-.header{border:4px solid #c00000;border-radius:25px;background:#fff;padding:18px;text-align:center;margin-bottom:15px}
-.header h2{color:#0e6ba8;margin:5px;line-height:1.9;font-size:28px}
-.header p{font-size:20px;line-height:1.8}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{border:3px solid #0e6ba8;border-radius:18px;background:#fff;padding:18px;text-align:center;color:#0e6ba8;font-weight:bold;text-decoration:none;font-size:21px;line-height:1.5;min-height:75px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 6px rgba(0,0,0,0.1)}
-.card:hover{background:#0e6ba8;color:#fff;transform:scale(1.03)}
-.btn-install{background:#0e6ba8;color:#fff;border:none;padding:15px 25px;border-radius:15px;font-size:22px;font-weight:bold;width:100%;margin:15px 0;cursor:pointer;display:none}
-.topbar{text-align:center;margin-bottom:10px}
+body{background:#eef6ff;margin:0}
+.header{background:#0e6ba8;color:#fff;text-align:center;padding:28px 10px;border-radius:0 0 28px 28px}
+.header h1{color:#fff !important;font-size:44px !important}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px}
+.card{
+background:#fff;border:4px solid #0e6ba8;border-radius:20px;color:#0e6ba8;
+font-weight:900;font-size:30px !important;min-height:125px;
+display:flex;align-items:center;justify-content:center;text-align:center;
+text-decoration:none;padding:12px;line-height:1.4
+}
 </style>
 </head>
 <body>
-<div class="header">
-<h2>الهيكل التنظيمي الهرمي<br>بلدية العقلة - ولاية تبسة</h2>
-<p>19 مقعد حسب المرسوم 26-282 لسنة 2026<br>القانون 10-11 المعدل بالأمر 13-21</p>
-</div>
-
-<div class="topbar">
-<button id="installBtn" class="btn-install">📲 ثبّت التطبيق على هاتفك</button>
-<div id="offlineStatus" style="color:green;font-weight:bold"></div>
-</div>
-
+<div class="header"><h1>بلدية العقلة<br>ولاية تبسة - دليل 150 مصلحة</h1></div>
 <div class="grid" id="grid"></div>
-
 <script>
-// توليد 115 زر تلقائيا مع خط كبير
-const container = document.getElementById('grid');
-const titles = {
-"001":"المجلس الشعبي","002":"رئيس المجلس","003":"نواب الرئيس","004":"المندوبين الخاصين","005":"اللجان الدائمة","006":"الأمين العام","007":"أمانة الرئيس","008":"مكتب الضبط","009":"الأرشيف","010":"الإعلام الآلي",
-"011":"مكتب الميلاد","012":"مكتب الزواج","013":"مكتب الوفاة","014":"التصديق والإمضاء","015":"مكتب الإقامة","016":"البيومتري وجواز السفر","017":"الملحقات الإدارية","018":"تنظيم المنازعات","019":"مكتب الجمعيات","020":"مكتب الانتخابات"
-};
-// توليد باقي الأسماء تلقائيا
-for(let i=1;i<=115;i++){
-  let num = String(i).padStart(3,'0');
-  let name = titles[num] || `ملف رقم ${num}`;
-  let a = document.createElement('a');
-  a.className='card';
-  a.textContent = num + ' ' + name;
-  a.href='#';
-  a.dataset.num=num;
-  container.appendChild(a);
+const files = [
+["001-majlis-chaabi.html","001 المجلس الشعبي"],
+["002-raiss-majlis.html","002 رئيس المجلس"],
+["003-noab-raiss.html","003 نواب الرئيس"],
+["004-mandoubine-khassine.html","004 المندوبين الخاصين"],
+["005-lijan-daima.html","005 اللجان الدائمة"],
+["006-amin-aam.html","006 الأمين العام"],
+["007-amanet-raiss.html","007 أمانة الرئيس"],
+["008-maktab-dabt.html","008 مكتب الضبط"],
+["009-archive-baladiya.html","009 الأرشيف البلدي"],
+["010-informatique-rakmana.html","010 الإعلام الآلي والرقمنة"],
+["019-maktab-jam3iyat.html","019 مكتب الجمعيات"],
+["020-maktab-intikhabat.html","020 مكتب الانتخابات"],
+["021-mounazaat-kadaya.html","021 المنازعات والقضايا"],
+["022-tandim-rokhas.html","022 تنظيم الرخص"],
+["023-maliya-mouhasaba.html","023 المالية والمحاسبة"],
+["024-maktab-mizaniya.html","024 مكتب الميزانية"],
+["025-mouhasaba-iltizam.html","025 المحاسبة والالتزام"],
+["026-iradat-jibaya.html","026 الإيرادات والجباية"],
+["027-safakat-omomiya.html","027 الصفقات العمومية"],
+["028-daftar-chourout.html","028 دفتر الشروط"],
+["029-mouchtarayat-makhzen.html","029 المشتريات والمخزن"],
+["030-tajhiz-achghal.html","030 التجهيز والأشغال"],
+["031-taamir-bina.html","031 التعمير والبناء"],
+["032-rokhas-bina-tafsil.html","032 رخص البناء التفصيلي"],
+["033-amlak-aqariya.html","033 الأملاك العقارية"],
+["034-hadhira-siyana.html","034 الحظيرة والصيانة"],
+["035-nadhafa-bia.html","035 النظافة والبيئة"],
+["036-hifd-siha-tafsil.html","036 حفظ الصحة"],
+["037-miyah-tathir.html","037 المياه والتطهير"],
+["038-choun-ijtima3iya.html","038 الشؤون الاجتماعية"],
+["039-minha-madrasiya-ramadhan.html","039 المنحة المدرسية ورمضان"],
+["040-madaris-naql.html","040 المدارس والنقل"],
+["053-maslaha-dabtiya-chorta-baladiya-amn-nidam-aam.html","053 الضبطية والشرطة البلدية"],
+["115-ittisal.html","115 الاتصال"],
+["116-riyada.html","116 الرياضة"]
+];
+let html="";
+for(let i=1;i<=150;i++){
+ let num=String(i).padStart(3,'0');
+ let found=files.find(f=>f[0].startsWith(num));
+ if(found){
+  html+=`<a class="card" href="${found[0]}">${found[1]}</a>`;
+ }else{
+  html+=`<a class="card" href="${num}-.html">${num} - مصلحة ${num}</a>`;
+ }
 }
-
-// تحميل قائمة الملفات الحقيقية من GitHub
-let fileList=[];
-fetch('https://api.github.com/repos/Echayebc/baladiya-elogla-tebessa/contents')
-.then(r=>r.json()).then(data=>{
-  fileList = data.filter(f=>f.name.endsWith('.html')).map(f=>f.name);
-  document.getElementById('offlineStatus').textContent = '✅ عدد الملفات الجاهزة: '+fileList.length+' - يشتغل بدون أنترنت بعد أول زيارة';
-  document.querySelectorAll('.card').forEach(card=>{
-    const num = card.dataset.num;
-    let found = fileList.find(n=>n.startsWith(num));
-    if(found){
-      card.href = found;
-      card.onclick = null;
-    } else {
-      card.style.opacity='0.5';
-    }
-  });
-  // حفظ للـ offline
-  if('caches' in window){
-    caches.open('baladiya-elogla-v3').then(cache=>{
-      fileList.forEach(f=>cache.add(f));
-    });
-  }
-});
-
-// تثبيت Service Worker للعمل بدون انترنت
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js');
-}
-
-// زر تثبيت التطبيق
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e)=>{
-  e.preventDefault();
-  deferredPrompt=e;
-  document.getElementById('installBtn').style.display='block';
-});
-document.getElementById('installBtn').addEventListener('click', ()=>{
-  if(deferredPrompt){ deferredPrompt.prompt(); }
-});
+document.getElementById('grid').innerHTML=html;
 </script>
 </body>
 </html>
