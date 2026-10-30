@@ -1,71 +1,24 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - 150 مصلحة</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0e6ba8">
-<link rel="icon" href="khadar.jpg">
-<style>
-body{background:#eef6ff;margin:0;font-family:Tahoma}
-.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;justify-content:space-between;padding:10px 12px}
-.top-bar .right{display:flex;align-items:center;gap:10px}
-.top-bar img{width:62px;height:62px;border-radius:50%;border:2px solid #0e6ba8}
-.top-bar b{font-size:14px}
-.top-bar span{font-size:11px;color:#444}
-#installBtnTop{
-  background: linear-gradient(135deg, #0e6ba8 0%, #6a5cff 45%, #00d4ff 100%);
-  color:#fff;border:none;padding:10px 16px;border-radius:25px;font-weight:900;font-size:13px;cursor:pointer;
-  box-shadow:0 3px 10px rgba(14,107,168,.35);
-}
-.header{background:#0e6ba8;color:#fff;text-align:center;padding:14px;border-radius:0 0 20px 20px}
-.header h2{margin:0;font-size:17px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
-.card span{color:#0e6ba8;font-weight:900;font-size:22px}
-.card b{color:#000;font-size:13px;margin-top:4px;line-height:1.3}
-</style>
-</head>
-<body>
+// install.js - زر التحميل مقابل الصورة
+(function(){
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
 
-<div class="top-bar">
-  <div class="right">
-    <img src="khadar.jpg">
-    <div>
-      <b>من إعداد المترشح<br>الطاهر خضار</b><br>
-      <span>بلدية العقلة - ولاية تبسة</span>
-    </div>
-  </div>
-  <button id="installBtnTop">📥 حمّل كتطبيق</button>
-</div>
-
-<div class="header">
-<h2>بلدية العقلة - ولاية تبسة<br>150 مصلحة بالعربية</h2>
-</div>
-
-<div class="grid" id="grid">جاري التحميل...</div>
-
-<script src="masalih-data.js"></script>
-<script>
-async function load(){
- try{
-  const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
-  const files = await res.json();
-  const list = files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
-  let h="";
-  list.forEach(f=>{
-    let num=f.name.substring(0,3);
-    let tr = MASALIH.find(x=>x.num===num);
-    let ar = tr ? tr.ar : f.name;
-    h+=`<a class="card" href="${f.name}?v=13"><span>${num}</span><b>${ar}</b></a>`;
-  });
-  document.getElementById('grid').innerHTML=h;
- }catch(e){ document.getElementById('grid').innerHTML="خطأ في التحميل"; }
-}
-load();
-</script>
-
-<script src="install.js"></script>
-</body>
-</html>
+  function init(){
+    const btn=document.getElementById('installBtnTop');
+    if(!btn) return;
+    btn.onclick=async()=>{
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        const {outcome}=await deferredPrompt.userChoice;
+        if(outcome==='accepted') btn.style.display='none';
+        deferredPrompt=null;
+      }else{
+        // من فيسبوك لايت يخرج لكروم
+        location.href="intent://echayebc.github.io/baladiya-elogla-tebessa/index.html?v=13#Intent;scheme=https;package=com.android.chrome;end";
+      }
+    };
+  }
+  document.addEventListener('DOMContentLoaded',init);
+  setTimeout(init,800);
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+})();
