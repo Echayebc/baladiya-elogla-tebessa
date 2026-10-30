@@ -1,26 +1,10 @@
-/* تكبير الخط العملاق لبلدية العقلة - يشتغل بدون انترنت */
-html{font-size:28px !important}
-body{
-  font-family: Tahoma, Arial !important;
-  font-size:30px !important;
-  line-height:2.2 !important;
-  background:#ffffe8 !important;
-  padding:12px !important;
+/* تكبير عملاق لكل الموقع - يطبق على كل الملفات */
+html, body, div, p, li, a, span, td, ul {
+  font-size: 32px !important;
+  line-height: 2.3 !important;
+  font-weight: 800 !important;
 }
-h1,h2,h3{
-  font-size:36px !important;
-  color:#b80000 !important;
-  font-weight:900 !important;
-  text-align:center !important;
-  line-height:1.8 !important;
+h1, h2, h3, b, strong {
+  font-size: 38px !important;
+  font-weight: 900 !important;
 }
-.box, div, ul, li, p{
-  font-size:28px !important;
-  line-height:2.1 !important;
-  font-weight:700 !important;
-}
-li{
-  font-size:27px !important;
-  margin-bottom:14px !important;
-}
-a{font-size:26px !important}
