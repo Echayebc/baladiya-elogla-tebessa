@@ -1,4 +1,4 @@
-name: بناء APK بلدية العقلة
+name: بناء APK
 
 on:
   push:
@@ -11,22 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: تثبيت Java 17
+      - name: Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: تثبيت Node
+      - name: Node 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: بناء التطبيق
+      - name: تجهيز وبناء
         run: |
-          npm init -y
+          rm -f package.json package-lock.json
+          rm -rf node_modules android www
+          mkdir www
+          cp -r *.html manifest.json sw.js www/ 2>/dev/null || cp -r *.html www/
+          echo '{"name":"baladiya","version":"1.0.0","private":true}' > package.json
           npm install @capacitor/core @capacitor/cli @capacitor/android
-          npx cap init "Baladiya Ogla" "dz.baladiya.ogla" --web-dir=.
+          npx cap init "Baladiya Ogla" "dz.baladiya.ogla" --web-dir=www
           npx cap add android
           npx cap copy android
           cd android
