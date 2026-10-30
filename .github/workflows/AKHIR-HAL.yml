@@ -1,0 +1,49 @@
+name: AKHIR HAL
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: فرض تنسيق 001
+        run: |
+          cat > /tmp/fix.py << 'PY'
+          import os, re
+          CSS = """
+          <style>
+          body{background:#eef6ff !important;margin:0 !important;padding:0 !important;font-family:Tahoma !important;}
+          h1{color:#0e6ba8 !important;text-align:center !important;font-size:32px !important;font-weight:900 !important;line-height:1.6 !important;background:none !important;border:none !important;margin:20px 10px !important;padding:0 !important;}
+          h2{color:#0e6ba8 !important;text-align:center !important;font-size:26px !important;}
+          div{background:#ffffff !important;border:2.5px solid #0e6ba8 !important;border-radius:14px !important;padding:16px !important;margin:14px 12px !important;font-size:22px !important;line-height:2.0 !important;font-weight:600 !important;color:#000 !important;text-align:right !important;}
+          li, p, ul, span, b{font-size:21px !important;line-height:1.9 !important;color:#000 !important;}
+          </style>
+          """
+          for f in os.listdir('.'):
+            if not f.endswith('.html'): continue
+            if f=='index.html': continue
+            with open(f,'r',encoding='utf-8',errors='ignore') as file:
+              c=file.read()
+            # احذف كل الستايلات القديمة مهما كانت
+            c=re.sub(r'<style[^>]*>.*?</style>','',c,flags=re.DOTALL|re.I)
+            c=re.sub(r'<link[^>]*rel="stylesheet"[^>]*>','',c,flags=re.I)
+            # احذف style="..." من داخل الوسوم
+            c=re.sub(r'\sstyle="[^"]*"','',c,flags=re.I)
+            # ادخل التنسيق الجديد قبل </head>
+            if '</head>' in c.lower():
+              c=re.sub(r'</head>', CSS + '\n</head>', c, flags=re.I)
+            else:
+              c=CSS + c
+            with open(f,'w',encoding='utf-8') as out:
+              out.write(c)
+          print("DONE")
+          PY
+          python3 /tmp/fix.py
+      - name: رفع التعديل
+        run: |
+          git config user.name "fix"
+          git config user.email "fix@fix.com"
+          git add .
+          git commit -m "فرض تنسيق 001 النهائي" || echo "لا يوجد تغيير"
+          git push
