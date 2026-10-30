@@ -1,0 +1,38 @@
+name: بناء تطبيق بلدية العقلة APK
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: تثبيت NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: تثبيت Bubblewrap
+        run: npm install -g @bubblewrap/cli
+
+      - name: بناء التطبيق
+        run: |
+          mkdir app-build
+          cd app-build
+          bubblewrap init --manifest=https://echayebc.github.io/baladiya-elogla-tebessa/manifest.json --directory=.
+          bubblewrap build
+
+      - name: رفع الـ APK للتحميل
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0-${{ github.run_number }}
+          name: تطبيق بلدية العقلة v1.0
+          body: |
+            تحميل مباشر لتطبيق بلدية العقلة الرسمي
+            بدون اعلانات - بدون انترنت - مخفي المصدر
+          files: app-build/app-release-signed.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
