@@ -1,8 +1,12 @@
-const CACHE='elogla-v8';
-const FILES=['index.html','tahmil.html','manifest.json','khadar.jpg'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)))});
-self.addEventListener('fetch',e=>{
-  // لا تحجز api.github.com ولا tahmil.html
-  if(e.request.url.includes('api.github.com') || e.request.url.includes('tahmil.html')) return;
-  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open('baladiya-v1').then(cache => {
+      return cache.addAll(['index.html','masalih-data.js','manifest.json','khadar.jpg']);
+    })
+  );
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(res => res || fetch(e.request))
+  );
 });
