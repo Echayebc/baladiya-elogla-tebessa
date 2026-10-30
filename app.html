@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حمّل تطبيق بلدية العقلة</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0e6ba8">
+<meta property="og:title" content="تطبيق بلدية العقلة - 150 مصلحة">
+<meta property="og:description" content="حمّل التطبيق الرسمي لبلدية العقلة - ولاية تبسة">
+<meta property="og:image" content="https://echayebc.github.io/baladiya-elogla-tebessa/khadar.jpg">
+<style>
+body{margin:0;font-family:Tahoma;background:#eef6ff;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+.card{background:#fff;border:3px solid #0e6ba8;border-radius:22px;padding:24px;max-width:360px;width:100%}
+.card img{width:90px;height:90px;border-radius:50%;border:3px solid #0e6ba8}
+#installBtn{background:#0e6ba8;color:#fff;border:none;padding:16px 30px;border-radius:35px;font-weight:900;font-size:18px;margin-top:18px;cursor:pointer;width:100%}
+#msg{margin-top:12px;color:#666;font-size:13px}
+</style>
+</head>
+<body>
+<div class="card">
+<img src="khadar.jpg">
+<h2>بلدية العقلة</h2>
+<p>150 مصلحة - ولاية تبسة<br>الطاهر خضار</p>
+<button id="installBtn">📥 حمّل كتطبيق الآن</button>
+<div id="msg">إذا ما بانش الزر، اضغط ⋮ في كروم واختر "تثبيت التطبيق"</div>
+</div>
+
+<script>
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
+
+let deferredPrompt;
+const btn = document.getElementById('installBtn');
+const msg = document.getElementById('msg');
+
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredPrompt = e;
+  btn.style.background="#0e6ba8";
+  msg.textContent="جاهز للتحميل - اضغط الزر";
+});
+
+btn.addEventListener('click', async ()=>{
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const {outcome} = await deferredPrompt.userChoice;
+    if(outcome==='accepted'){ msg.textContent="✅ تم التثبيت"; }
+    deferredPrompt=null;
+  }else{
+    msg.textContent="من كروم اضغط ⋮ > تثبيت التطبيق / Add to Home Screen";
+  }
+});
+window.addEventListener('appinstalled', ()=>{ msg.textContent="✅ تم تثبيت التطبيق بنجاح"; });
+</script>
+</body>
+</html>
