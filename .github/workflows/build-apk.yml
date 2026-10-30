@@ -9,8 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: سحب الملفات
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: تثبيت Java 17
         uses: actions/setup-java@v4
@@ -18,37 +17,27 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: تثبيت Android SDK
-        uses: android-actions/setup-android@v3
+      - name: تثبيت Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: تثبيت Capacitor
+      - name: بناء التطبيق
         run: |
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
           npx cap init "Baladiya Ogla" "dz.baladiya.ogla" --web-dir=.
-
-      - name: إضافة منصة أندرويد
-        run: |
           npx cap add android
           npx cap copy android
-
-      - name: بناء APK
-        run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleDebug
 
-      - name: رفع APK للتحميل من GitHub
+      - name: نشر APK
         uses: softprops/action-gh-release@v1
         with:
           tag_name: apk-v${{ github.run_number }}
-          name: "تطبيق بلدية العقلة APK - تحميل مباشر"
-          body: |
-            ✅ تطبيق رسمي
-            ✅ بدون إعلانات
-            ✅ بدون أنترنت
-            ✅ مخفي المصدر - لا يظهر github في الواجهة
-            تحميل مباشر من GitHub
+          name: تطبيق بلدية العقلة
           files: android/app/build/outputs/apk/debug/app-debug.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
