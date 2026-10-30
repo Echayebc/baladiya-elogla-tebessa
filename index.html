@@ -3,88 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - 150 مصلحة بالعربية</title>
+<title>بلدية العقلة - 150 مصلحة</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0e6ba8">
-<style>
-body{background:#eef6ff;margin:0;font-family:Tahoma}
-.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}
-.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8}
-.header{background:#0e6ba8;color:#fff;text-align:center;padding:15px;border-radius:0 0 20px 20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
-.card span{color:#0e6ba8;font-weight:900;font-size:13px}
-.card b{color:#000;font-size:12.5px}
-</style>
+<style>body{background:#eef6ff;margin:0;font-family:Tahoma}.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8}.header{background:#0e6ba8;color:#fff;text-align:center;padding:12px;border-radius:0 0 20px 20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}.card span{color:#0e6ba8;font-weight:900}.card b{color:#000;font-size:13px}</style>
 </head>
 <body>
 <div class="top-bar"><img src="khadar.jpg"><div><b>الطاهر خضار</b><br><span style="font-size:11px">بلدية العقلة تبسة - 150 مصلحة</span></div></div>
 <div class="header"><h2>بلدية العقلة - 150 مصلحة بالعربية</h2></div>
 <div class="grid" id="grid"></div>
+<script src="masalih-data.js?v=3"></script>
 <script>
-const LIST=[
-["001-majlis-chaabi.html","001","المجلس الشعبي البلدي"],
-["002-raiss-majlis.html","002","رئيس المجلس الشعبي"],
-["003-noab-raiss.html","003","نواب الرئيس"],
-["004-mandoubine-khassine.html","004","المندوبين الخاصين"],
-["005-lijan-daima.html","005","اللجان الدائمة"],
-["006-amin-aam.html","006","الأمين العام للبلدية"],
-["101-bi.html","101","البيئة"],
-["102-taamir-urbanisme.html","102","التعمير والعمران"],
-["103-amlak-dawla.html","103","أملاك الدولة"],
-["104-daraib.html","104","الضرائب"],
-["105-khazina.html","105","الخزينة العمومية"],
-["106-himaya-madaniya.html","106","الحماية المدنية"],
-["107-amn-watani.html","107","الأمن الوطني"],
-["108-ghabat.html","108","الغابات"],
-["109-failaha.html","109","الفلاحة"],
-["110-tarbiya.html","110","التربية والتعليم"],
-["111-siha.html","111","الصحة العمومية"],
-["112-tachghil.html","112","التشغيل"],
-["113-taqafiya-islmiya.html","113","الشؤون الدينية"],
-["114-mojahidin.html","114","المجاهدين"],
-["115-ittisal.html","115","الاتصال"],
-["116-riyada.html","116","الرياضة"],
-["117-thaqafa.html","117","الثقافة"],
-["118-takwin-mihani.html","118","التكوين المهني"],
-["119-ta3lim-ali.html","119","التعليم العالي"],
-["120-qadaa.html","120","القضاء"],
-["121-hiss-bina-watani.html","121","حصة البناء الوطني"],
-["122-tadamoun-watani.html","122","التضامن الوطني"],
-["123-amn-tarbiwi.html","123","الأمن التربوي"],
-["124-thiqa-mouwatine.html","124","ثقة المواطن"],
-["125-chafafiya-mousawat.html","125","الشفافية والمساواة"],
-["126-houkama-rassida.html","126","الحوكمة الرشيدة"],
-["127-tanmiya-moustadama.html","127","التنمية المستدامة"],
-["128-dawla-qanoun.html","128","دولة القانون"],
-["129-idara-raqmiya.html","129","الإدارة الرقمية"],
-["130-khidma-omoumiya.html","130","الخدمة العمومية"],
-["131-ibtikar-mahali.html","131","الابتكار المحلي"],
-["132-mouqawalat-saghira.html","132","المقاولات الصغيرة"],
-["133-tachghil-chabab.html","133","تشغيل الشباب"],
-["134-maraa-rifiya.html","134","المرأة الريفية"],
-["135-dawi-ihtiyajat.html","135","ذوي الاحتياجات الخاصة"],
-["136-himaya-tifoula.html","136","حماية الطفولة"],
-["137-mouwatana-fa3ila.html","137","المواطنة الفعالة"],
-["138-dimouqratiya-tacharoukiya.html","138","الديمقراطية التشاركية"],
-["139-takafoul-ijtima3i.html","139","التكافل الاجتماعي"],
-["140-wahda-wataniya.html","140","الوحدة الوطنية"],
-["141-amn-ghidhai.html","141","الأمن الغذائي"],
-["142-amn-mai.html","142","الأمن المائي"],
-["143-amn-taqi.html","143","الأمن الطاقوي"],
-["144-tahawol-raqmi.html","144","التحول الرقمي"],
-["145-moukawama-ijabi.html","145","المقاومة الإيجابية"],
-["146-istithmar-mahali.html","146","الاستثمار المحلي"],
-["147-tasdir-mahali.html","147","التصدير المحلي"],
-["148-iqtisad-maarifa.html","148","اقتصاد المعرفة"],
-["149-moudoun-dhakiya.html","149","المدن الذكية"],
-["150-mouwatin-raqmi.html","150","المواطن الرقمي"]
-];
-// لإكمال 150 ملف نضيف الباقي تلقائيا بنفس النمط العربي
-let h="";
-LIST.forEach(([file,num,ar])=>{
-  h+=`<a class="card" href="${file}"><span>${num}</span><b>${ar}</b></a>`;
-});
+let h=""; MASALIH.forEach(o=>{ h+=`<a class="card" href="${o.file}"><span>${o.num}</span><b>${o.ar}</b></a>`; });
 document.getElementById('grid').innerHTML=h;
 </script>
 </body>
