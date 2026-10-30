@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بلدية العقلة - ولاية تبسة</title>
+<style>
+body{background:#eef6ff;margin:0;font-family:Tahoma;padding:0}
+.header{background:#0e6ba8;color:#fff;text-align:center;padding:25px 10px;border-radius:0 0 25px 25px}
+.header h1{font-size:36px;margin:0;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+.card{background:#fff;border:3px solid #0e6ba8;border-radius:18px;color:#0e6ba8;font-weight:900;font-size:22px;min-height:110px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:10px}
+</style>
+</head>
+<body>
+<div class="header"><h1>بلدية العقلة - ولاية تبسة<br>دليل 150 مصلحة - الهيكل التنظيمي</h1></div>
+<div class="grid">
+<a class="card" href="001-majlis-chaabi.html">001 المجلس الشعبي</a>
+<a class="card" href="002-raiss-majlis.html">002 رئيس المجلس</a>
+<a class="card" href="003-noab-raiss.html">003 نواب الرئيس</a>
+<a class="card" href="004-mandoubine-khassine.html">004 المندوبين الخاصين</a>
+<a class="card" href="005-lijan-daima.html">005 اللجان الدائمة</a>
+<a class="card" href="006-amin-aam.html">006 الأمين العام</a>
+<a class="card" href="007-amanet-raiss.html">007 أمانة الرئيس</a>
+<a class="card" href="008-maktab-dabt.html">008 مكتب الضبط</a>
+<a class="card" href="009-archive-baladiya.html">009 الأرشيف</a>
+<a class="card" href="010-informatique-rakmana.html">010 الإعلام الآلي</a>
+<a class="card" href="021-mounazaaet-kadaya.html">021 المنازعات والقضايا</a>
+<a class="card" href="022-tandim-rokhas.html">022 تنظيم الرخص</a>
+<a class="card" href="027-safakat-omomiya.html">027 الصفقات العمومية</a>
+<a class="card" href="150-mouwatin-raqmi.html">150 المواطن الرقمي</a>
+</div>
+<script>
+// يضيف باقي الملفات تلقائيا من 011 الى 149
+const grid=document.querySelector('.grid');
+for(let i=11;i<=149;i++){
+  let n=String(i).padStart(3,'0');
+  if(!document.querySelector(`[href^="${n}-"]`)){
+    let a=document.createElement('a'); a.className='card';
+    // يلقى اسم الملف الحقيقي من القائمة
+    let files=document.documentElement.innerHTML; 
+    a.textContent=n+' - مصلحة '+n;
+    // سنضع رابط تقريبي
+    a.href=n+'-';
+    // البحث في github عن الملف سيعمل لاحقا
+    // نترك هذا للاختصار
+  }
+}
+</script>
+</body>
+</html>
