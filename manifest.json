@@ -1,18 +1,16 @@
 {
   "name": "بلدية العقلة - الطاهر خضار",
-  "short_name": "بلدية العقلة",
-  "description": "بطاقة فنية غير رسمية حول بلدية العقلة - من إعداد المترشح الطاهر خضار",
-  "start_url": "./",
+  "short_name": "العقلة",
+  "description": "بطاقة فنية غير رسمية - 150 مصلحة - بلدية العقلة تبسة",
+  "start_url": "index.html?app=1",
   "display": "standalone",
-  "background_color": "#eef6ff",
+  "background_color": "#0e6ba8",
   "theme_color": "#0e6ba8",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "khadar.jpg",
       "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "type": "image/jpeg"
     },
     {
       "src": "khadar.jpg",
