@@ -1,0 +1,40 @@
+name: فرض خط الملف 1 على الكل
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python3 << 'PY'
+          import os, re
+          css = """<style id="FORCE-BIG">
+          html, body{background:#ffffff !important; margin:0 !important; padding:0 !important;}
+          *{font-size:28px !important; line-height:2.1 !important; font-family:Tahoma, Arial !important; font-weight:700 !important;}
+          h1{font-size:36px !important; font-weight:900 !important; color:#0e6ba8 !important; text-align:center !important; background:#e8f4ff !important; border:4px solid #0e6ba8 !important; border-radius:20px !important; padding:18px !important; margin:12px !important;}
+          div, section, ul, li, p, article{font-size:28px !important; background:#ffffff !important; border:3px solid #0e6ba8 !important; border-radius:16px !important; padding:16px !important; margin:14px 8px !important;}
+          </style>"""
+          for fn in os.listdir('.'):
+            if not fn.endswith('.html'): continue
+            if fn in ('index.html','README.md'): continue
+            with open(fn,'r',encoding='utf-8',errors='ignore') as f:
+              c=f.read()
+            c=re.sub(r'<style.*?>.*?</style>', '', c, flags=re.DOTALL|re.IGNORECASE)
+            c=re.sub(r'<link[^>]*\.css[^>]*>', '', c, flags=re.IGNORECASE)
+            c=re.sub(r'style="[^"]*"', '', c, flags=re.IGNORECASE)
+            if '</head>' in c.lower():
+              c=re.sub(r'</head>', css+'\n</head>', c, flags=re.IGNORECASE)
+            else:
+              c=css+c
+            with open(fn,'w',encoding='utf-8') as out:
+              out.write(c)
+          print("تم الفرض")
+          PY
+      - run: |
+          git config user.name "bot"
+          git config user.email "bot@bot.com"
+          git add .
+          git commit -m "فرض خط الملف 1 على كل النوافذ" || exit 0
+          git push
