@@ -1,48 +1,24 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بلدية العقلة - الطاهر خضار</title>
+<title>حمل تطبيق بلدية العقلة - الطاهر خضار</title>
+
+<!-- هاذو لي يخليو فايسبوك يظهر صورة جميلة بدل الرابط -->
+<meta property="og:title" content="تطبيق بلدية العقلة - الطاهر خضار">
+<meta property="og:description" content="من إعداد المترشح الطاهر خضار - بطاقة فنية غير رسمية تضم 150 مصلحة وملف منظم بالعربية - حملوه الآن">
+<meta property="og:image" content="https://echayebc.github.io/baladiya-elogla-tebessa/khadar.jpg">
+<meta property="og:url" content="https://echayebc.github.io/baladiya-elogla-tebessa/tahmil.html">
+<meta property="og:type" content="website">
+
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0e6ba8">
 <link rel="icon" href="khadar.jpg">
-<style>
-body{background:#eef6ff;margin:0;font-family:Tahoma;padding-bottom:20px}
-.top-bar{background:#fff;border-bottom:3px solid #0e6ba8;display:flex;align-items:center;gap:12px;padding:10px}
-.top-bar img{width:70px;height:70px;border-radius:50%;border:2px solid #0e6ba8;object-fit:cover}
-.top-bar b{color:#0e6ba8;font-size:15px}
-.top-bar span{font-size:12px;font-weight:700;color:#333;display:block}
-.header{background:#0e6ba8;color:#fff;text-align:center;padding:18px;border-radius:0 0 20px 20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:3px solid #0e6ba8;border-radius:16px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;padding:8px}
-.card span{color:#0e6ba8;font-weight:900;font-size:13px}
-.card b{color:#000;font-size:14px;margin:4px 0}
-.card small{font-size:10px;color:#777;word-break:break-all}
-#loading{text-align:center;padding:20px;color:#0e6ba8;font-weight:900}
+<link rel="apple-touch-icon" href="khadar.jpg">
+<style> /* نفس الستايل القديم */ 
+body{margin:0;font-family:Tahoma;background:#eef6ff;text-align:center}
+.box{background:#fff;margin:12px;border:3px solid #0e6ba8;border-radius:20px;padding:18px}
+.box img{width:140px;height:140px;border-radius:50%;border:3px solid #0e6ba8;object-fit:cover}
+h1{color:#0e6ba8;font-size:22px}
+.btn{background:#0e6ba8;color:#fff;border:none;padding:16px;border-radius:30px;font-size:19px;font-weight:900;width:100%;margin:12px 0;cursor:pointer;display:block;text-decoration:none}
 </style>
 </head>
-<body>
-<div class="top-bar"><img src="khadar.jpg"><div><b>من إعداد المترشح: الطاهر خضار</b><span>بطاقة فنية غير رسمية - بلدية العقلة تبسة</span></div></div>
-<div class="header"><h1>بلدية العقلة - ولاية تبسة</h1></div>
-<div id="loading">جاري تحميل الملفات الحقيقية...</div>
-<div class="grid" id="grid"></div>
-<script>
-async function load(){
- const res = await fetch('https://api.github.com/repos/echayebc/baladiya-elogla-tebessa/contents?per_page=200');
- const files = await res.json();
- const list = files.filter(f=>f.name.endsWith('.html') && /^\d{3}-/.test(f.name)).sort((a,b)=>a.name.localeCompare(b.name));
- let h="";
- list.forEach(f=>{
-   let num=f.name.substring(0,3);
-   let clean=f.name.replace('.html','').replace(/^\d{3}-/,'').replace(/-/g,' ');
-   h+=`<a class="card" href="${f.name}"><span>${num}</span><b>${clean}</b><small>${f.name}</small></a>`;
- });
- document.getElementById('grid').innerHTML=h;
- document.getElementById('loading').innerHTML=`تم تحميل ${list.length} ملف - كل الملفات تفتح الآن`;
-}
-load();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
-</script>
-</body>
-</html>ض
