@@ -1,0 +1,17 @@
+{
+  "name": "بلدية العقلة - ولاية تبسة",
+  "short_name": "بلدية العقلة",
+  "description": "الهيكل التنظيمي الهرمي بلدية العقلة 200 ملف",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#eef6ff",
+  "theme_color": "#0e6ba8",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/942/942751.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
